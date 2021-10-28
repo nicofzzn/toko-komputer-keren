@@ -1,11 +1,16 @@
 import {
   Box,
+  Divider,
   VStack,
   HStack,
   Text,
   Spacer,
   Checkbox,
   CheckboxGroup,
+  RangeSlider,
+  RangeSliderFilledTrack,
+  RangeSliderTrack,
+  RangeSliderThumb,
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { BsDash, BsPlus } from 'react-icons/bs'
@@ -16,12 +21,14 @@ const defaultDropdown: cpuDropdownInterface = {
   manufacturer: true,
   series: false,
   codeName: false,
+  coreCount: false,
 }
 
 const defaultFilter: cpuFilterInterface = {
   manufacturer: ['all'],
   series: ['all'],
   codeName: ['all'],
+  coreCount: [1, 64],
 }
 
 const FilterCpu = () => {
@@ -32,7 +39,7 @@ const FilterCpu = () => {
     setDropdown({ ...dropdown, [e]: !dropdown[e] })
   }
 
-  function onFilterChange(e: cpuDropdownType, value: ReactText[]) {
+  function onCheckBoxChange(e: cpuDropdownType, value: ReactText[]) {
     if (filters[e][0] === 'all' && value.length > 1) {
       setFilters({ ...filters, [e]: value.filter(current => current !== 'all') })
     } else if (
@@ -49,10 +56,13 @@ const FilterCpu = () => {
     }
   }
 
+  function onRangeSliderChange(e: cpuDropdownType, value: number[]) {
+    setFilters({ ...filters, [e]: value })
+  }
+
   return (
     <Box w='full' fontWeight='medium'>
       <VStack alignItems='flex-start'>
-        {/* --------- */}
         <Box w='full'>
           <HStack
             w='full'
@@ -67,7 +77,7 @@ const FilterCpu = () => {
             <Box pl='2' mt='2'>
               <CheckboxGroup
                 value={filters.manufacturer}
-                onChange={value => onFilterChange('manufacturer', value)}
+                onChange={value => onCheckBoxChange('manufacturer', value)}
                 size='sm'
                 colorScheme='accent'
               >
@@ -80,7 +90,9 @@ const FilterCpu = () => {
             </Box>
           )}
         </Box>
-        {/* --------- */}
+
+        <Divider borderColor='gray.500' />
+
         <Box w='full'>
           <HStack w='full' cursor='pointer' onClick={() => onDropdownChange('series')}>
             <Text>Series</Text>
@@ -93,7 +105,7 @@ const FilterCpu = () => {
                 value={filters.series}
                 size='sm'
                 colorScheme='accent'
-                onChange={e => onFilterChange('series', e)}
+                onChange={e => onCheckBoxChange('series', e)}
               >
                 <VStack align='flex-start'>
                   <Checkbox value='all'>All</Checkbox>
@@ -110,7 +122,9 @@ const FilterCpu = () => {
             </Box>
           )}
         </Box>
-        {/* --------- */}
+
+        <Divider borderColor='gray.500' />
+
         <Box w='full'>
           <HStack w='full' cursor='pointer' onClick={() => onDropdownChange('codeName')}>
             <Text>Codename</Text>
@@ -123,7 +137,7 @@ const FilterCpu = () => {
                 value={filters.codeName}
                 size='sm'
                 colorScheme='accent'
-                onChange={e => onFilterChange('codeName', e)}
+                onChange={e => onCheckBoxChange('codeName', e)}
               >
                 <VStack align='flex-start'>
                   <Checkbox value='all'>All</Checkbox>
@@ -133,6 +147,40 @@ const FilterCpu = () => {
                   <Checkbox value='haswell'>haswell</Checkbox>
                 </VStack>
               </CheckboxGroup>
+            </Box>
+          )}
+        </Box>
+
+        <Divider borderColor='gray.500' />
+
+        <Box w='full'>
+          <HStack w='full' cursor='pointer' onClick={() => onDropdownChange('coreCount')}>
+            <Text>Core Count</Text>
+            <Spacer />
+            <Box>{dropdown.coreCount ? <BsDash /> : <BsPlus />}</Box>
+          </HStack>
+          {dropdown.coreCount && (
+            <Box pl='2' mt='2'>
+              <HStack w='full' fontSize='sm'>
+                <Text>{filters.coreCount[0]}</Text>
+                <Spacer />
+                <Text>{filters.coreCount[1]}</Text>
+              </HStack>
+              <RangeSlider
+                // value={filters.coreCount}
+                defaultValue={[1, 64]}
+                max={64}
+                min={1}
+                colorScheme='accent'
+                onChangeEnd={e => onRangeSliderChange('coreCount', e)}
+                size='sm'
+              >
+                <RangeSliderTrack>
+                  <RangeSliderFilledTrack />
+                </RangeSliderTrack>
+                <RangeSliderThumb bg='accent.500' index={0} />
+                <RangeSliderThumb bg='accent.500' index={1} />
+              </RangeSlider>
             </Box>
           )}
         </Box>

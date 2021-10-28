@@ -1,7 +1,12 @@
-import { extendTheme } from '@chakra-ui/react'
+import { extendTheme, ThemeConfig } from '@chakra-ui/react'
 import { colors } from './colors'
 import { LinkStyle as Link } from './LinkStyle'
 import { ContainerStyle as Container } from './ContainerStyle'
+
+const config: ThemeConfig = {
+  initialColorMode: 'light',
+  useSystemColorMode: false,
+}
 
 const theme = extendTheme({
   fonts: {
@@ -22,6 +27,7 @@ const theme = extendTheme({
     Link,
     Container,
   },
+  config,
 })
 
 export default theme

@@ -7,8 +7,22 @@ import {
   Box,
   Container,
   Center,
+  VStack,
 } from '@chakra-ui/react'
-import { Motherboard } from '../style/icons'
+import { Link } from 'react-router-dom'
+import {
+  Motherboard,
+  Cpu,
+  Fan,
+  Gpu,
+  Monitor,
+  Storage,
+  Ram,
+  Peripherals,
+  Psu,
+  Mouse,
+  Keyboard,
+} from '../style/icons'
 
 const Home = () => {
   return (
@@ -32,41 +46,129 @@ const Home = () => {
           </Grid>
         </Container>
       </Box>
-      <Container maxW='700px' py='20'>
-        <Grid templateColumns='repeat(4, 1fr)' gap='20'>
+      <Container maxW='900px'>
+        <Text m='8' fontSize='lg'>
+          Find product by categories
+        </Text>
+        <Grid templateColumns='repeat(4, 1fr)' gap='10'>
           <GridItem>
             <Center>
-              <Box w='80px' color='accent.500'>
-                <Motherboard />
-              </Box>
+              <Link to='products/motherboard'>
+                <VStack
+                  p='2'
+                  _hover={{
+                    color: 'accent.500',
+                    cursor: 'pointer',
+                  }}
+                >
+                  <Box w='80px'>
+                    <Motherboard />
+                  </Box>
+                  <Text>Motherboard</Text>
+                </VStack>
+              </Link>
             </Center>
           </GridItem>
           <GridItem>
             <Center>
-              <Box w='80px' color='accent.500'>
-                <Motherboard />
-              </Box>
+              <Link to='products/cpu'>
+                <VStack p='2' _hover={{ color: 'accent.500', cursor: 'pointer' }}>
+                  <Box w='80px'>
+                    <Cpu />
+                  </Box>
+                  <Text>CPU</Text>
+                </VStack>
+              </Link>
             </Center>
           </GridItem>
           <GridItem>
             <Center>
-              <Box w='80px' color='accent.500'>
-                <Motherboard />
-              </Box>
+              <VStack p='2' _hover={{ color: 'accent.500', cursor: 'pointer' }}>
+                <Box w='80px'>
+                  <Gpu />
+                </Box>
+                <Text>GPU</Text>
+              </VStack>
             </Center>
           </GridItem>
           <GridItem>
             <Center>
-              <Box w='80px' color='accent.500'>
-                <Motherboard />
-              </Box>
+              <VStack p='2' _hover={{ color: 'accent.500', cursor: 'pointer' }}>
+                <Box w='80px'>
+                  <Ram />
+                </Box>
+                <Text>RAM</Text>
+              </VStack>
             </Center>
           </GridItem>
           <GridItem>
             <Center>
-              <Box w='80px' color='accent.500'>
-                <Motherboard />
-              </Box>
+              <VStack p='2' _hover={{ color: 'accent.500', cursor: 'pointer' }}>
+                <Box w='80px'>
+                  <Storage />
+                </Box>
+                <Text>Storage</Text>
+              </VStack>
+            </Center>
+          </GridItem>
+          <GridItem>
+            <Center>
+              <VStack p='2' _hover={{ color: 'accent.500', cursor: 'pointer' }}>
+                <Box w='80px'>
+                  <Psu />
+                </Box>
+                <Text>Power Supply</Text>
+              </VStack>
+            </Center>
+          </GridItem>
+          <GridItem>
+            <Center>
+              <VStack p='2' _hover={{ color: 'accent.500', cursor: 'pointer' }}>
+                <Box w='80px'>
+                  <Monitor />
+                </Box>
+                <Text>Monitor</Text>
+              </VStack>
+            </Center>
+          </GridItem>
+          <GridItem>
+            <Center>
+              <VStack p='2' _hover={{ color: 'accent.500', cursor: 'pointer' }}>
+                <Box w='80px'>
+                  <Fan />
+                </Box>
+                <Text>Fan</Text>
+              </VStack>
+            </Center>
+          </GridItem>
+          <GridItem>
+            <Center>
+              <VStack p='2' _hover={{ color: 'accent.500', cursor: 'pointer' }}>
+                <Box w='80px'>
+                  <Peripherals />
+                </Box>
+                <Text>Peripheral</Text>
+              </VStack>
+            </Center>
+          </GridItem>
+          <GridItem>
+            <Center>
+              <VStack p='2' _hover={{ color: 'accent.500', cursor: 'pointer' }}>
+                <Box w='80px'>
+                  <Mouse />
+                </Box>
+                <Text>Mouse</Text>
+              </VStack>
+            </Center>
+          </GridItem>
+          <GridItem>
+            <Center>
+              <VStack p='2' _hover={{ color: 'accent.500', cursor: 'pointer' }}>
+                <Box w='80px'>
+                  <Keyboard />
+                </Box>
+                <Text>Keyboard</Text>
+              </VStack>
             </Center>
           </GridItem>
         </Grid>

@@ -1,6 +1,4 @@
 import {
-  Box,
-  VStack,
   HStack,
   Text,
   Spacer,
@@ -9,6 +7,7 @@ import {
   MenuList,
   MenuItem,
   Button,
+  Box,
 } from '@chakra-ui/react'
 import { BsChevronDown } from 'react-icons/bs'
 
@@ -55,6 +54,7 @@ const FilterResult = () => {
           </Menu>
         </HStack>
       </HStack>
+      <Box>products</Box>
     </>
   )
 }

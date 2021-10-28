@@ -6,7 +6,7 @@ import '@fontsource/mulish'
 import Navbar from './components/Navbar'
 import Home from './screen/Home'
 import Footer from './components/Footer'
-import Products from './components/Products'
+import Products from './screen/Products'
 
 export const App = () => (
   <ChakraProvider theme={theme}>
@@ -16,7 +16,7 @@ export const App = () => (
         <Route exact path='/'>
           <Home />
         </Route>
-        <Route path='/products'>
+        <Route path='/products/:category?'>
           <Products />
         </Route>
       </Switch>

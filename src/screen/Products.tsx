@@ -26,6 +26,7 @@ const Products = () => {
           <VStack alignItems='flex-start'>
             <Divider borderColor='gray.400' />
             {categoryFilter()}
+            <Divider borderColor='gray.500' />
             <PriceFilter />
           </VStack>
         </Box>

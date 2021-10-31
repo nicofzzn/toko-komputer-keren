@@ -18,10 +18,13 @@ import { ReactText } from 'react-router/node_modules/@types/react'
 import { cpuDropdownInterface, cpuDropdownType, cpuFilterInterface } from '../interface'
 
 const defaultDropdown: cpuDropdownInterface = {
-  manufacturer: true,
+  manufacturer: false,
   series: false,
   codeName: false,
   coreCount: false,
+  tdp: false,
+  threadCount: false,
+  releaseDate: false,
 }
 
 const defaultFilter: cpuFilterInterface = {
@@ -29,6 +32,9 @@ const defaultFilter: cpuFilterInterface = {
   series: ['all'],
   codeName: ['all'],
   coreCount: [1, 64],
+  threadCount: [1, 288],
+  tdp: [1, 400],
+  releaseDate: ['all'],
 }
 
 const FilterCpu = () => {
@@ -167,10 +173,9 @@ const FilterCpu = () => {
                 <Text>{filters.coreCount[1]}</Text>
               </HStack>
               <RangeSlider
-                // value={filters.coreCount}
                 defaultValue={[1, 64]}
-                max={64}
                 min={1}
+                max={64}
                 colorScheme='accent'
                 onChangeEnd={e => onRangeSliderChange('coreCount', e)}
                 size='sm'
@@ -181,6 +186,108 @@ const FilterCpu = () => {
                 <RangeSliderThumb bg='accent.500' index={0} />
                 <RangeSliderThumb bg='accent.500' index={1} />
               </RangeSlider>
+            </Box>
+          )}
+        </Box>
+
+        <Divider borderColor='gray.500' />
+
+        <Box w='full'>
+          <HStack
+            w='full'
+            cursor='pointer'
+            onClick={() => onDropdownChange('threadCount')}
+          >
+            <Text>Thread Count</Text>
+            <Spacer />
+            <Box>{dropdown.threadCount ? <BsDash /> : <BsPlus />}</Box>
+          </HStack>
+          {dropdown.threadCount && (
+            <Box pl='2' mt='2'>
+              <HStack w='full' fontSize='sm'>
+                <Text>{filters.threadCount[0]}</Text>
+                <Spacer />
+                <Text>{filters.threadCount[1]}</Text>
+              </HStack>
+              <RangeSlider
+                defaultValue={[1, 288]}
+                min={1}
+                max={64}
+                colorScheme='accent'
+                onChangeEnd={e => onRangeSliderChange('threadCount', e)}
+                size='sm'
+              >
+                <RangeSliderTrack>
+                  <RangeSliderFilledTrack />
+                </RangeSliderTrack>
+                <RangeSliderThumb bg='accent.500' index={0} />
+                <RangeSliderThumb bg='accent.500' index={1} />
+              </RangeSlider>
+            </Box>
+          )}
+        </Box>
+
+        <Divider borderColor='gray.500' />
+
+        <Box w='full'>
+          <HStack w='full' cursor='pointer' onClick={() => onDropdownChange('tdp')}>
+            <Text>TDP</Text>
+            <Spacer />
+            <Box>{dropdown.tdp ? <BsDash /> : <BsPlus />}</Box>
+          </HStack>
+          {dropdown.tdp && (
+            <Box pl='2' mt='2'>
+              <HStack w='full' fontSize='sm'>
+                <Text>{filters.tdp[0]}</Text>
+                <Spacer />
+                <Text>{filters.tdp[1]}</Text>
+              </HStack>
+              <RangeSlider
+                defaultValue={[1, 400]}
+                min={1}
+                max={400}
+                colorScheme='accent'
+                onChangeEnd={e => onRangeSliderChange('tdp', e)}
+                size='sm'
+              >
+                <RangeSliderTrack>
+                  <RangeSliderFilledTrack />
+                </RangeSliderTrack>
+                <RangeSliderThumb bg='accent.500' index={0} />
+                <RangeSliderThumb bg='accent.500' index={1} />
+              </RangeSlider>
+            </Box>
+          )}
+        </Box>
+
+        <Divider borderColor='gray.500' />
+
+        <Box w='full'>
+          <HStack
+            w='full'
+            cursor='pointer'
+            onClick={() => onDropdownChange('releaseDate')}
+          >
+            <Text>Release Date</Text>
+            <Spacer />
+            <Box>{dropdown.releaseDate ? <BsDash /> : <BsPlus />}</Box>
+          </HStack>
+          {dropdown.releaseDate && (
+            <Box pl='2' mt='2'>
+              <CheckboxGroup
+                value={filters.releaseDate}
+                size='sm'
+                colorScheme='accent'
+                onChange={e => onCheckBoxChange('releaseDate', e)}
+              >
+                <VStack align='flex-start'>
+                  <Checkbox value='all'>All</Checkbox>
+                  <Checkbox value='2021'>2021</Checkbox>
+                  <Checkbox value='2020'>2020</Checkbox>
+                  <Checkbox value='2019'>2019</Checkbox>
+                  <Checkbox value='2018'>2018</Checkbox>
+                </VStack>
+              </CheckboxGroup>
             </Box>
           )}
         </Box>

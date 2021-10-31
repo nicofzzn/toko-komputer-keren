@@ -18,7 +18,6 @@ import {
   Monitor,
   Storage,
   Ram,
-  Peripherals,
   Psu,
   Mouse,
   Keyboard,
@@ -46,11 +45,11 @@ const Home = () => {
           </Grid>
         </Container>
       </Box>
-      <Container maxW='900px'>
-        <Text m='8' fontSize='lg'>
+      <Container py='20' maxW='900px'>
+        <Text ml='8' mb='10' fontSize='1.5em'>
           Find product by categories
         </Text>
-        <Grid templateColumns='repeat(4, 1fr)' gap='10'>
+        <Grid templateColumns='repeat(4, 1fr)' gap='4em'>
           <GridItem>
             <Center>
               <Link to='products/motherboard'>
@@ -59,7 +58,11 @@ const Home = () => {
                   _hover={{
                     color: 'accent.500',
                     cursor: 'pointer',
+                    position: 'relative',
+                    transform: 'translateY(-3px)',
+                    transitionDuration: '.1s',
                   }}
+                  transitionDuration='.1s'
                 >
                   <Box w='80px'>
                     <Motherboard />
@@ -72,7 +75,17 @@ const Home = () => {
           <GridItem>
             <Center>
               <Link to='products/cpu'>
-                <VStack p='2' _hover={{ color: 'accent.500', cursor: 'pointer' }}>
+                <VStack
+                  p='2'
+                  _hover={{
+                    color: 'accent.500',
+                    cursor: 'pointer',
+                    position: 'relative',
+                    transform: 'translateY(-3px)',
+                    transitionDuration: '.1s',
+                  }}
+                  transitionDuration='.1s'
+                >
                   <Box w='80px'>
                     <Cpu />
                   </Box>
@@ -83,7 +96,17 @@ const Home = () => {
           </GridItem>
           <GridItem>
             <Center>
-              <VStack p='2' _hover={{ color: 'accent.500', cursor: 'pointer' }}>
+              <VStack
+                p='2'
+                _hover={{
+                  color: 'accent.500',
+                  cursor: 'pointer',
+                  position: 'relative',
+                  transform: 'translateY(-3px)',
+                  transitionDuration: '.1s',
+                }}
+                transitionDuration='.1s'
+              >
                 <Box w='80px'>
                   <Gpu />
                 </Box>
@@ -93,7 +116,17 @@ const Home = () => {
           </GridItem>
           <GridItem>
             <Center>
-              <VStack p='2' _hover={{ color: 'accent.500', cursor: 'pointer' }}>
+              <VStack
+                p='2'
+                _hover={{
+                  color: 'accent.500',
+                  cursor: 'pointer',
+                  position: 'relative',
+                  transform: 'translateY(-3px)',
+                  transitionDuration: '.1s',
+                }}
+                transitionDuration='.1s'
+              >
                 <Box w='80px'>
                   <Ram />
                 </Box>
@@ -103,7 +136,17 @@ const Home = () => {
           </GridItem>
           <GridItem>
             <Center>
-              <VStack p='2' _hover={{ color: 'accent.500', cursor: 'pointer' }}>
+              <VStack
+                p='2'
+                _hover={{
+                  color: 'accent.500',
+                  cursor: 'pointer',
+                  position: 'relative',
+                  transform: 'translateY(-3px)',
+                  transitionDuration: '.1s',
+                }}
+                transitionDuration='.1s'
+              >
                 <Box w='80px'>
                   <Storage />
                 </Box>
@@ -113,7 +156,17 @@ const Home = () => {
           </GridItem>
           <GridItem>
             <Center>
-              <VStack p='2' _hover={{ color: 'accent.500', cursor: 'pointer' }}>
+              <VStack
+                p='2'
+                _hover={{
+                  color: 'accent.500',
+                  cursor: 'pointer',
+                  position: 'relative',
+                  transform: 'translateY(-3px)',
+                  transitionDuration: '.1s',
+                }}
+                transitionDuration='.1s'
+              >
                 <Box w='80px'>
                   <Psu />
                 </Box>
@@ -123,7 +176,17 @@ const Home = () => {
           </GridItem>
           <GridItem>
             <Center>
-              <VStack p='2' _hover={{ color: 'accent.500', cursor: 'pointer' }}>
+              <VStack
+                p='2'
+                _hover={{
+                  color: 'accent.500',
+                  cursor: 'pointer',
+                  position: 'relative',
+                  transform: 'translateY(-3px)',
+                  transitionDuration: '.1s',
+                }}
+                transitionDuration='.1s'
+              >
                 <Box w='80px'>
                   <Monitor />
                 </Box>
@@ -133,7 +196,17 @@ const Home = () => {
           </GridItem>
           <GridItem>
             <Center>
-              <VStack p='2' _hover={{ color: 'accent.500', cursor: 'pointer' }}>
+              <VStack
+                p='2'
+                _hover={{
+                  color: 'accent.500',
+                  cursor: 'pointer',
+                  position: 'relative',
+                  transform: 'translateY(-3px)',
+                  transitionDuration: '.1s',
+                }}
+                transitionDuration='.1s'
+              >
                 <Box w='80px'>
                   <Fan />
                 </Box>
@@ -143,17 +216,17 @@ const Home = () => {
           </GridItem>
           <GridItem>
             <Center>
-              <VStack p='2' _hover={{ color: 'accent.500', cursor: 'pointer' }}>
-                <Box w='80px'>
-                  <Peripherals />
-                </Box>
-                <Text>Peripheral</Text>
-              </VStack>
-            </Center>
-          </GridItem>
-          <GridItem>
-            <Center>
-              <VStack p='2' _hover={{ color: 'accent.500', cursor: 'pointer' }}>
+              <VStack
+                p='2'
+                _hover={{
+                  color: 'accent.500',
+                  cursor: 'pointer',
+                  position: 'relative',
+                  transform: 'translateY(-3px)',
+                  transitionDuration: '.1s',
+                }}
+                transitionDuration='.1s'
+              >
                 <Box w='80px'>
                   <Mouse />
                 </Box>
@@ -163,7 +236,17 @@ const Home = () => {
           </GridItem>
           <GridItem>
             <Center>
-              <VStack p='2' _hover={{ color: 'accent.500', cursor: 'pointer' }}>
+              <VStack
+                p='2'
+                _hover={{
+                  color: 'accent.500',
+                  cursor: 'pointer',
+                  position: 'relative',
+                  transform: 'translateY(-3px)',
+                  transitionDuration: '.1s',
+                }}
+                transitionDuration='.1s'
+              >
                 <Box w='80px'>
                   <Keyboard />
                 </Box>

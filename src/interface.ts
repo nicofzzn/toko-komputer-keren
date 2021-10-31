@@ -5,6 +5,9 @@ export interface cpuDropdownInterface {
   series: boolean
   codeName: boolean
   coreCount: boolean
+  threadCount: boolean
+  tdp: boolean
+  releaseDate: boolean
 }
 
 export interface cpuFilterInterface {
@@ -12,6 +15,16 @@ export interface cpuFilterInterface {
   series: ReactText[]
   codeName: ReactText[]
   coreCount: number[]
+  threadCount: number[]
+  tdp: number[]
+  releaseDate: ReactText[]
 }
 
-export type cpuDropdownType = 'manufacturer' | 'series' | 'codeName' | 'coreCount'
+export type cpuDropdownType =
+  | 'manufacturer'
+  | 'series'
+  | 'codeName'
+  | 'coreCount'
+  | 'threadCount'
+  | 'tdp'
+  | 'releaseDate'

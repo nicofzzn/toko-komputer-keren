@@ -2,7 +2,7 @@ import { Box, VStack, Text, InputGroup, InputLeftElement, Input } from '@chakra-
 
 const PriceFilter = () => {
   return (
-    <Box pt='1' w='full' fontWeight='medium'>
+    <Box w='full' fontWeight='medium'>
       <Text>Price</Text>
       <VStack ml='2' mt='4' fontSize='small'>
         <InputGroup size='sm' mb='2' borderColor='gray.400'>

@@ -25,6 +25,7 @@ const defaultDropdown: cpuDropdownInterface = {
   tdp: false,
   threadCount: false,
   releaseDate: false,
+  socket: false,
 }
 
 const defaultFilter: cpuFilterInterface = {
@@ -35,6 +36,7 @@ const defaultFilter: cpuFilterInterface = {
   threadCount: [1, 288],
   tdp: [1, 400],
   releaseDate: ['all'],
+  socket: ['all'],
 }
 
 const FilterCpu = () => {
@@ -123,6 +125,34 @@ const FilterCpu = () => {
                   <Checkbox value='Intel Core i5'>Intel Core i5</Checkbox>
                   <Checkbox value='Intel Core i7'>Intel Core i7</Checkbox>
                   <Checkbox value='Intel Core i9'>Intel Core i9</Checkbox>
+                </VStack>
+              </CheckboxGroup>
+            </Box>
+          )}
+        </Box>
+
+        <Divider borderColor='gray.500' />
+
+        <Box w='full'>
+          <HStack w='full' cursor='pointer' onClick={() => onDropdownChange('socket')}>
+            <Text>Socket</Text>
+            <Spacer />
+            <Box>{dropdown.socket ? <BsDash /> : <BsPlus />}</Box>
+          </HStack>
+          {dropdown.socket && (
+            <Box pl='2' mt='2'>
+              <CheckboxGroup
+                value={filters.socket}
+                size='sm'
+                colorScheme='accent'
+                onChange={e => onCheckBoxChange('socket', e)}
+              >
+                <VStack align='flex-start'>
+                  <Checkbox value='all'>All</Checkbox>
+                  <Checkbox value='AM4'>AM4</Checkbox>
+                  <Checkbox value='LGA1150'>LGA1150</Checkbox>
+                  <Checkbox value='LGA1151'>LGA1151</Checkbox>
+                  <Checkbox value='sTRX4'>sTRX4</Checkbox>
                 </VStack>
               </CheckboxGroup>
             </Box>

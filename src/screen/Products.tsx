@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import FilterResult from '../components/FilterResult'
 import FilterCpu from '../components/FilterCpu'
 import PriceFilter from '../components/PriceFilter'
+import FilterMotherboard from '../components/FilterMotherboard'
 
 const Products = () => {
   const { category } = useParams<{ category: string }>()
@@ -11,8 +12,10 @@ const Products = () => {
     switch (category) {
       case 'cpu':
         return <FilterCpu />
+      case 'motherboard':
+        return <FilterMotherboard />
       default:
-        return <p>{category}</p>
+        return <p>kategori</p>
     }
   }
 

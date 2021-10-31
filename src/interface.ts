@@ -56,3 +56,36 @@ export type motherboardDropdownType =
   | 'memoryType'
   | 'memorySlot'
   | 'socket'
+
+// GPU
+export interface gpuDropdownInterface {
+  manufacturer: boolean
+  chipset: boolean
+  memoryType: boolean
+  memory: boolean
+  coreClock: boolean
+  boostClock: boolean
+  interface: boolean
+  tdp: boolean
+}
+
+export interface gpuFilterInterface {
+  manufacturer: ReactText[]
+  chipset: ReactText[]
+  memoryType: ReactText[]
+  memory: number[]
+  coreClock: number[]
+  boostClock: number[]
+  interface: ReactText[]
+  tdp: number[]
+}
+
+export type gpuDropdownType =
+  | 'manufacturer'
+  | 'chipset'
+  | 'memoryType'
+  | 'memory'
+  | 'coreClock'
+  | 'boostClock'
+  | 'interface'
+  | 'tdp'

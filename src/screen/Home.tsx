@@ -96,22 +96,24 @@ const Home = () => {
           </GridItem>
           <GridItem>
             <Center>
-              <VStack
-                p='2'
-                _hover={{
-                  color: 'accent.500',
-                  cursor: 'pointer',
-                  position: 'relative',
-                  transform: 'translateY(-3px)',
-                  transitionDuration: '.1s',
-                }}
-                transitionDuration='.1s'
-              >
-                <Box w='80px'>
-                  <Gpu />
-                </Box>
-                <Text>GPU</Text>
-              </VStack>
+              <Link to='products/gpu'>
+                <VStack
+                  p='2'
+                  _hover={{
+                    color: 'accent.500',
+                    cursor: 'pointer',
+                    position: 'relative',
+                    transform: 'translateY(-3px)',
+                    transitionDuration: '.1s',
+                  }}
+                  transitionDuration='.1s'
+                >
+                  <Box w='80px'>
+                    <Gpu />
+                  </Box>
+                  <Text>GPU</Text>
+                </VStack>
+              </Link>
             </Center>
           </GridItem>
           <GridItem>

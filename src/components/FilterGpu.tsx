@@ -15,39 +15,39 @@ import {
 import { useState } from 'react'
 import { BsDash, BsPlus } from 'react-icons/bs'
 import { ReactText } from 'react-router/node_modules/@types/react'
-import { cpuDropdownInterface, cpuDropdownType, cpuFilterInterface } from '../interface'
+import { gpuDropdownInterface, gpuDropdownType, gpuFilterInterface } from '../interface'
 
-const defaultDropdown: cpuDropdownInterface = {
+const defaultDropdown: gpuDropdownInterface = {
   manufacturer: false,
-  series: false,
-  codeName: false,
-  coreCount: false,
+  chipset: false,
+  boostClock: false,
+  coreClock: false,
+  memoryType: false,
+  memory: false,
   tdp: false,
-  threadCount: false,
-  releaseDate: false,
-  socket: false,
+  interface: false,
 }
 
-const defaultFilter: cpuFilterInterface = {
+const defaultFilter: gpuFilterInterface = {
   manufacturer: ['all'],
-  series: ['all'],
-  codeName: ['all'],
-  coreCount: [1, 64],
-  threadCount: [1, 288],
-  tdp: [1, 400],
-  releaseDate: ['all'],
-  socket: ['all'],
+  chipset: ['all'],
+  coreClock: [1, 16],
+  boostClock: [1, 16],
+  memoryType: ['all'],
+  memory: [1, 26],
+  tdp: [1, 16],
+  interface: ['all'],
 }
 
-const FilterCpu = () => {
+const FilterGpu = () => {
   const [dropdown, setDropdown] = useState(defaultDropdown)
   const [filters, setFilters] = useState(defaultFilter)
 
-  function onDropdownChange(e: cpuDropdownType) {
+  function onDropdownChange(e: gpuDropdownType) {
     setDropdown({ ...dropdown, [e]: !dropdown[e] })
   }
 
-  function onCheckBoxChange(e: cpuDropdownType, value: ReactText[]) {
+  function onCheckBoxChange(e: gpuDropdownType, value: ReactText[]) {
     if (filters[e][0] === 'all' && value.length > 1) {
       setFilters({ ...filters, [e]: value.filter(current => current !== 'all') })
     } else if (
@@ -64,10 +64,9 @@ const FilterCpu = () => {
     }
   }
 
-  function onRangeSliderChange(e: cpuDropdownType, value: number[]) {
+  function onRangeSliderChange(e: gpuDropdownType, value: number[]) {
     setFilters({ ...filters, [e]: value })
   }
-
   return (
     <Box w='full' fontWeight='medium'>
       <VStack alignItems='flex-start'>
@@ -91,8 +90,9 @@ const FilterCpu = () => {
               >
                 <VStack align='flex-start'>
                   <Checkbox value='all'>All</Checkbox>
-                  <Checkbox value='amd'>Amd</Checkbox>
-                  <Checkbox value='intel'>Intel</Checkbox>
+                  <Checkbox value='asrock'>Asrock</Checkbox>
+                  <Checkbox value='aorus'>Aorus</Checkbox>
+                  <Checkbox value='asus'>Asus</Checkbox>
                 </VStack>
               </CheckboxGroup>
             </Box>
@@ -102,29 +102,30 @@ const FilterCpu = () => {
         <Divider borderColor='gray.500' />
 
         <Box w='full'>
-          <HStack w='full' cursor='pointer' onClick={() => onDropdownChange('series')}>
-            <Text>Series</Text>
+          <HStack w='full' cursor='pointer' onClick={() => onDropdownChange('chipset')}>
+            <Text>Chipset</Text>
             <Spacer />
-            <Box>{dropdown.series ? <BsDash /> : <BsPlus />}</Box>
+            <Box>{dropdown.chipset ? <BsDash /> : <BsPlus />}</Box>
           </HStack>
-          {dropdown.series && (
+          {dropdown.chipset && (
             <Box pl='2' mt='2'>
               <CheckboxGroup
-                value={filters.series}
+                value={filters.chipset}
+                onChange={value => onCheckBoxChange('chipset', value)}
                 size='sm'
                 colorScheme='accent'
-                onChange={e => onCheckBoxChange('series', e)}
               >
                 <VStack align='flex-start'>
                   <Checkbox value='all'>All</Checkbox>
-                  <Checkbox value='AMD Ryzen 3'>AMD Ryzen 3</Checkbox>
-                  <Checkbox value='AMD Ryzen 5'>AMD Ryzen 5</Checkbox>
-                  <Checkbox value='AMD Ryzen 7'>AMD Ryzen 7</Checkbox>
-                  <Checkbox value='AMD Ryzen 9'>AMD Ryzen 9</Checkbox>
-                  <Checkbox value='Intel Core i3'>Intel Core i3</Checkbox>
-                  <Checkbox value='Intel Core i5'>Intel Core i5</Checkbox>
-                  <Checkbox value='Intel Core i7'>Intel Core i7</Checkbox>
-                  <Checkbox value='Intel Core i9'>Intel Core i9</Checkbox>
+                  <Checkbox value='GeForce RTX 2060 Super'>
+                    GeForce RTX 2060 Super
+                  </Checkbox>
+                  <Checkbox value='GeForce RTX 2070 Super'>
+                    GeForce RTX 2070 Super
+                  </Checkbox>
+                  <Checkbox value='GeForce RTX 2080 Super'>
+                    GeForce RTX 2080 Super
+                  </Checkbox>
                 </VStack>
               </CheckboxGroup>
             </Box>
@@ -134,25 +135,24 @@ const FilterCpu = () => {
         <Divider borderColor='gray.500' />
 
         <Box w='full'>
-          <HStack w='full' cursor='pointer' onClick={() => onDropdownChange('socket')}>
-            <Text>Socket</Text>
+          <HStack w='full' cursor='pointer' onClick={() => onDropdownChange('interface')}>
+            <Text>Interface</Text>
             <Spacer />
-            <Box>{dropdown.socket ? <BsDash /> : <BsPlus />}</Box>
+            <Box>{dropdown.interface ? <BsDash /> : <BsPlus />}</Box>
           </HStack>
-          {dropdown.socket && (
+          {dropdown.interface && (
             <Box pl='2' mt='2'>
               <CheckboxGroup
-                value={filters.socket}
+                value={filters.interface}
+                onChange={value => onCheckBoxChange('interface', value)}
                 size='sm'
                 colorScheme='accent'
-                onChange={e => onCheckBoxChange('socket', e)}
               >
                 <VStack align='flex-start'>
                   <Checkbox value='all'>All</Checkbox>
-                  <Checkbox value='AM4'>AM4</Checkbox>
-                  <Checkbox value='LGA1150'>LGA1150</Checkbox>
-                  <Checkbox value='LGA1151'>LGA1151</Checkbox>
-                  <Checkbox value='sTRX4'>sTRX4</Checkbox>
+                  <Checkbox value='PCIe x16'>PCIe x16</Checkbox>
+                  <Checkbox value='PCIe x8'>PCIe x8</Checkbox>
+                  <Checkbox value='PCIe x1'>PCIe x1</Checkbox>
                 </VStack>
               </CheckboxGroup>
             </Box>
@@ -162,25 +162,28 @@ const FilterCpu = () => {
         <Divider borderColor='gray.500' />
 
         <Box w='full'>
-          <HStack w='full' cursor='pointer' onClick={() => onDropdownChange('codeName')}>
-            <Text>Codename</Text>
+          <HStack
+            w='full'
+            cursor='pointer'
+            onClick={() => onDropdownChange('memoryType')}
+          >
+            <Text>Memory Type</Text>
             <Spacer />
-            <Box>{dropdown.codeName ? <BsDash /> : <BsPlus />}</Box>
+            <Box>{dropdown.memoryType ? <BsDash /> : <BsPlus />}</Box>
           </HStack>
-          {dropdown.codeName && (
+          {dropdown.memoryType && (
             <Box pl='2' mt='2'>
               <CheckboxGroup
-                value={filters.codeName}
+                value={filters.memoryType}
+                onChange={value => onCheckBoxChange('memoryType', value)}
                 size='sm'
                 colorScheme='accent'
-                onChange={e => onCheckBoxChange('codeName', e)}
               >
                 <VStack align='flex-start'>
                   <Checkbox value='all'>All</Checkbox>
-                  <Checkbox value='matise'>matise</Checkbox>
-                  <Checkbox value='pinacle ridge'>pinacle ridge</Checkbox>
-                  <Checkbox value='skylake'>skylake</Checkbox>
-                  <Checkbox value='haswell'>haswell</Checkbox>
+                  <Checkbox value='DDR2'>DDR2</Checkbox>
+                  <Checkbox value='DDR3'>DDR3</Checkbox>
+                  <Checkbox value='DDR4'>DDR4</Checkbox>
                 </VStack>
               </CheckboxGroup>
             </Box>
@@ -190,24 +193,58 @@ const FilterCpu = () => {
         <Divider borderColor='gray.500' />
 
         <Box w='full'>
-          <HStack w='full' cursor='pointer' onClick={() => onDropdownChange('coreCount')}>
-            <Text>Core Count</Text>
+          <HStack w='full' cursor='pointer' onClick={() => onDropdownChange('memory')}>
+            <Text>Memory</Text>
             <Spacer />
-            <Box>{dropdown.coreCount ? <BsDash /> : <BsPlus />}</Box>
+            <Box>{dropdown.memory ? <BsDash /> : <BsPlus />}</Box>
           </HStack>
-          {dropdown.coreCount && (
+          {dropdown.memory && (
             <Box pl='2' mt='2'>
               <HStack w='full' fontSize='sm'>
-                <Text fontSize='xs'>{filters.coreCount[0]}</Text>
+                <Text fontSize='xs'>{filters.memory[0]} GB</Text>
                 <Spacer />
-                <Text fontSize='xs'>{filters.coreCount[1]}</Text>
+                <Text fontSize='xs'>{filters.memory[1]} GB</Text>
               </HStack>
               <RangeSlider
-                defaultValue={[1, 64]}
-                min={1}
-                max={64}
+                defaultValue={[0, 26]}
+                min={0}
+                max={26}
                 colorScheme='accent'
-                onChangeEnd={e => onRangeSliderChange('coreCount', e)}
+                onChangeEnd={e => onRangeSliderChange('memory', e)}
+                size='sm'
+              >
+                <RangeSliderTrack>
+                  <RangeSliderFilledTrack />
+                </RangeSliderTrack>
+                <RangeSliderThumb bg='accent.500' index={0} />
+                <RangeSliderThumb bg='accent.500' index={1} />
+              </RangeSlider>
+            </Box>
+          )}
+        </Box>
+
+        <Divider borderColor='gray.500' />
+
+        <Box w='full'>
+          <HStack w='full' cursor='pointer' onClick={() => onDropdownChange('coreClock')}>
+            <Text>Core Clock</Text>
+            <Spacer />
+            <Box>{dropdown.coreClock ? <BsDash /> : <BsPlus />}</Box>
+          </HStack>
+          {dropdown.coreClock && (
+            <Box pl='2' mt='2'>
+              <HStack w='full' fontSize='sm'>
+                <Text fontSize='xs'>{filters.coreClock[0]} MHz</Text>
+                <Spacer />
+                <Text fontSize='xs'>{filters.coreClock[1]} MHz</Text>
+              </HStack>
+              <RangeSlider
+                defaultValue={[0, 2500]}
+                min={0}
+                max={2500}
+                step={100}
+                colorScheme='accent'
+                onChangeEnd={e => onRangeSliderChange('coreClock', e)}
                 size='sm'
               >
                 <RangeSliderTrack>
@@ -226,25 +263,26 @@ const FilterCpu = () => {
           <HStack
             w='full'
             cursor='pointer'
-            onClick={() => onDropdownChange('threadCount')}
+            onClick={() => onDropdownChange('boostClock')}
           >
-            <Text>Thread Count</Text>
+            <Text>Boost Clock</Text>
             <Spacer />
-            <Box>{dropdown.threadCount ? <BsDash /> : <BsPlus />}</Box>
+            <Box>{dropdown.boostClock ? <BsDash /> : <BsPlus />}</Box>
           </HStack>
-          {dropdown.threadCount && (
+          {dropdown.boostClock && (
             <Box pl='2' mt='2'>
               <HStack w='full' fontSize='sm'>
-                <Text fontSize='xs'>{filters.threadCount[0]}</Text>
+                <Text fontSize='xs'>{filters.boostClock[0]} MHz</Text>
                 <Spacer />
-                <Text fontSize='xs'>{filters.threadCount[1]}</Text>
+                <Text fontSize='xs'>{filters.boostClock[1]} MHz</Text>
               </HStack>
               <RangeSlider
-                defaultValue={[1, 288]}
-                min={1}
-                max={64}
+                defaultValue={[0, 2500]}
+                min={0}
+                max={2500}
+                step={100}
                 colorScheme='accent'
-                onChangeEnd={e => onRangeSliderChange('threadCount', e)}
+                onChangeEnd={e => onRangeSliderChange('boostClock', e)}
                 size='sm'
               >
                 <RangeSliderTrack>
@@ -273,9 +311,10 @@ const FilterCpu = () => {
                 <Text fontSize='xs'>{filters.tdp[1]} W</Text>
               </HStack>
               <RangeSlider
-                defaultValue={[1, 400]}
+                defaultValue={[1, 580]}
                 min={1}
-                max={400}
+                max={580}
+                step={10}
                 colorScheme='accent'
                 onChangeEnd={e => onRangeSliderChange('tdp', e)}
                 size='sm'
@@ -289,41 +328,9 @@ const FilterCpu = () => {
             </Box>
           )}
         </Box>
-
-        <Divider borderColor='gray.500' />
-
-        <Box w='full'>
-          <HStack
-            w='full'
-            cursor='pointer'
-            onClick={() => onDropdownChange('releaseDate')}
-          >
-            <Text>Release Date</Text>
-            <Spacer />
-            <Box>{dropdown.releaseDate ? <BsDash /> : <BsPlus />}</Box>
-          </HStack>
-          {dropdown.releaseDate && (
-            <Box pl='2' mt='2'>
-              <CheckboxGroup
-                value={filters.releaseDate}
-                size='sm'
-                colorScheme='accent'
-                onChange={e => onCheckBoxChange('releaseDate', e)}
-              >
-                <VStack align='flex-start'>
-                  <Checkbox value='all'>All</Checkbox>
-                  <Checkbox value='2021'>2021</Checkbox>
-                  <Checkbox value='2020'>2020</Checkbox>
-                  <Checkbox value='2019'>2019</Checkbox>
-                  <Checkbox value='2018'>2018</Checkbox>
-                </VStack>
-              </CheckboxGroup>
-            </Box>
-          )}
-        </Box>
       </VStack>
     </Box>
   )
 }
 
-export default FilterCpu
+export default FilterGpu

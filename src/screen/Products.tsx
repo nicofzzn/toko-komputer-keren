@@ -4,6 +4,7 @@ import FilterResult from '../components/FilterResult'
 import FilterCpu from '../components/FilterCpu'
 import PriceFilter from '../components/PriceFilter'
 import FilterMotherboard from '../components/FilterMotherboard'
+import FilterGpu from '../components/FilterGpu'
 
 const Products = () => {
   const { category } = useParams<{ category: string }>()
@@ -14,6 +15,8 @@ const Products = () => {
         return <FilterCpu />
       case 'motherboard':
         return <FilterMotherboard />
+      case 'gpu':
+        return <FilterGpu />
       default:
         return <p>kategori</p>
     }

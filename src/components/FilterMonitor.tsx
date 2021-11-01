@@ -16,36 +16,36 @@ import { useState } from 'react'
 import { BsDash, BsPlus } from 'react-icons/bs'
 import { ReactText } from 'react-router/node_modules/@types/react'
 import {
-  motherboardDropdownInterface,
-  motherboardDropdownType,
-  motherboardFilterInterface,
+  monitorDropdownInterface,
+  monitorDropdownType,
+  monitorFilterInterface,
 } from '../interface'
 
-const defaultDropdown: motherboardDropdownInterface = {
+const defaultDropdown: monitorDropdownInterface = {
   manufacturer: false,
-  socket: false,
-  formFactor: false,
-  memorySlot: false,
-  memoryType: false,
+  refreshRate: false,
+  screenSize: false,
+  resulution: false,
+  panelType: false,
 }
 
-const defaultFilter: motherboardFilterInterface = {
+const defaultFilter: monitorFilterInterface = {
   manufacturer: ['all'],
-  socket: ['all'],
-  memoryType: ['all'],
-  memorySlot: [1, 16],
-  formFactor: ['all'],
+  refreshRate: [1, 360],
+  screenSize: [1, 64],
+  resulution: ['all'],
+  panelType: ['all'],
 }
 
-const FilterMotherboard = () => {
+const FilterMonitor = () => {
   const [dropdown, setDropdown] = useState(defaultDropdown)
   const [filters, setFilters] = useState(defaultFilter)
 
-  function onDropdownChange(e: motherboardDropdownType) {
+  function onDropdownChange(e: monitorDropdownType) {
     setDropdown({ ...dropdown, [e]: !dropdown[e] })
   }
 
-  function onCheckBoxChange(e: motherboardDropdownType, value: ReactText[]) {
+  function onCheckBoxChange(e: monitorDropdownType, value: ReactText[]) {
     if (filters[e][0] === 'all' && value.length > 1) {
       setFilters({ ...filters, [e]: value.filter(current => current !== 'all') })
     } else if (
@@ -62,7 +62,7 @@ const FilterMotherboard = () => {
     }
   }
 
-  function onRangeSliderChange(e: motherboardDropdownType, value: number[]) {
+  function onRangeSliderChange(e: monitorDropdownType, value: number[]) {
     setFilters({ ...filters, [e]: value })
   }
 
@@ -101,25 +101,55 @@ const FilterMotherboard = () => {
         <Divider borderColor='gray.500' />
 
         <Box w='full'>
-          <HStack w='full' cursor='pointer' onClick={() => onDropdownChange('socket')}>
-            <Text>Socket</Text>
+          <HStack
+            w='full'
+            cursor='pointer'
+            onClick={() => onDropdownChange('resulution')}
+          >
+            <Text>Resulution</Text>
             <Spacer />
-            <Box>{dropdown.socket ? <BsDash /> : <BsPlus />}</Box>
+            <Box>{dropdown.resulution ? <BsDash /> : <BsPlus />}</Box>
           </HStack>
-          {dropdown.socket && (
+          {dropdown.resulution && (
             <Box pl='2' mt='2'>
               <CheckboxGroup
-                value={filters.socket}
-                onChange={value => onCheckBoxChange('socket', value)}
+                value={filters.resulution}
+                onChange={value => onCheckBoxChange('resulution', value)}
                 size='sm'
                 colorScheme='accent'
               >
                 <VStack align='flex-start'>
                   <Checkbox value='all'>All</Checkbox>
-                  <Checkbox value='AM4'>AM4</Checkbox>
-                  <Checkbox value='LGA1150'>LGA1150</Checkbox>
-                  <Checkbox value='LGA1151'>LGA1151</Checkbox>
-                  <Checkbox value='sTRX4'>sTRX4</Checkbox>
+                  <Checkbox value='asrock'>Asrock</Checkbox>
+                  <Checkbox value='aorus'>Aorus</Checkbox>
+                  <Checkbox value='asus'>Asus</Checkbox>
+                </VStack>
+              </CheckboxGroup>
+            </Box>
+          )}
+        </Box>
+
+        <Divider borderColor='gray.500' />
+
+        <Box w='full'>
+          <HStack w='full' cursor='pointer' onClick={() => onDropdownChange('panelType')}>
+            <Text>Panel Type</Text>
+            <Spacer />
+            <Box>{dropdown.panelType ? <BsDash /> : <BsPlus />}</Box>
+          </HStack>
+          {dropdown.panelType && (
+            <Box pl='2' mt='2'>
+              <CheckboxGroup
+                value={filters.panelType}
+                onChange={value => onCheckBoxChange('panelType', value)}
+                size='sm'
+                colorScheme='accent'
+              >
+                <VStack align='flex-start'>
+                  <Checkbox value='all'>All</Checkbox>
+                  <Checkbox value='asrock'>Asrock</Checkbox>
+                  <Checkbox value='aorus'>Aorus</Checkbox>
+                  <Checkbox value='asus'>Asus</Checkbox>
                 </VStack>
               </CheckboxGroup>
             </Box>
@@ -132,88 +162,63 @@ const FilterMotherboard = () => {
           <HStack
             w='full'
             cursor='pointer'
-            onClick={() => onDropdownChange('formFactor')}
+            onClick={() => onDropdownChange('refreshRate')}
           >
-            <Text>Form Factor</Text>
+            <Text>Refresh Rate</Text>
             <Spacer />
-            <Box>{dropdown.formFactor ? <BsDash /> : <BsPlus />}</Box>
+            <Box>{dropdown.refreshRate ? <BsDash /> : <BsPlus />}</Box>
           </HStack>
-          {dropdown.formFactor && (
-            <Box pl='2' mt='2'>
-              <CheckboxGroup
-                value={filters.formFactor}
-                onChange={value => onCheckBoxChange('formFactor', value)}
-                size='sm'
-                colorScheme='accent'
-              >
-                <VStack align='flex-start'>
-                  <Checkbox value='all'>All</Checkbox>
-                  <Checkbox value='ATX'>ATX</Checkbox>
-                  <Checkbox value='EATX'>EATX</Checkbox>
-                  <Checkbox value='Micro ATX'>Micro ATX</Checkbox>
-                  <Checkbox value='Mini ATX'>Mini ATX</Checkbox>
-                </VStack>
-              </CheckboxGroup>
-            </Box>
-          )}
-        </Box>
-
-        <Divider borderColor='gray.500' />
-
-        <Box w='full'>
-          <HStack
-            w='full'
-            cursor='pointer'
-            onClick={() => onDropdownChange('memoryType')}
-          >
-            <Text>Memory Type</Text>
-            <Spacer />
-            <Box>{dropdown.memoryType ? <BsDash /> : <BsPlus />}</Box>
-          </HStack>
-          {dropdown.memoryType && (
-            <Box pl='2' mt='2'>
-              <CheckboxGroup
-                value={filters.memoryType}
-                onChange={value => onCheckBoxChange('memoryType', value)}
-                size='sm'
-                colorScheme='accent'
-              >
-                <VStack align='flex-start'>
-                  <Checkbox value='all'>All</Checkbox>
-                  <Checkbox value='DDR2'>DDR2</Checkbox>
-                  <Checkbox value='DDR3'>DDR3</Checkbox>
-                  <Checkbox value='DDR4'>DDR4</Checkbox>
-                </VStack>
-              </CheckboxGroup>
-            </Box>
-          )}
-        </Box>
-
-        <Divider borderColor='gray.500' />
-
-        <Box w='full'>
-          <HStack
-            w='full'
-            cursor='pointer'
-            onClick={() => onDropdownChange('memorySlot')}
-          >
-            <Text>Memory Slot</Text>
-            <Spacer />
-            <Box>{dropdown.memorySlot ? <BsDash /> : <BsPlus />}</Box>
-          </HStack>
-          {dropdown.memorySlot && (
+          {dropdown.refreshRate && (
             <Box pl='2' mt='2'>
               <HStack w='full' fontSize='sm'>
-                <Text fontSize='xs'>{filters.memorySlot[0]}</Text>
+                <Text fontSize='xs'>{filters.refreshRate[0]} Hz</Text>
                 <Spacer />
-                <Text fontSize='xs'>{filters.memorySlot[1]}</Text>
+                <Text fontSize='xs'>{filters.refreshRate[1]} Hz</Text>
               </HStack>
               <RangeSlider
-                defaultValue={[1, 16]}
+                defaultValue={[1, 360]}
                 min={1}
-                max={16}
+                max={360}
+                step={5}
                 colorScheme='accent'
-                onChangeEnd={e => onRangeSliderChange('memorySlot', e)}
+                onChangeEnd={e => onRangeSliderChange('refreshRate', e)}
+                size='sm'
+              >
+                <RangeSliderTrack>
+                  <RangeSliderFilledTrack />
+                </RangeSliderTrack>
+                <RangeSliderThumb bg='accent.500' index={0} />
+                <RangeSliderThumb bg='accent.500' index={1} />
+              </RangeSlider>
+            </Box>
+          )}
+        </Box>
+
+        <Divider borderColor='gray.500' />
+
+        <Box w='full'>
+          <HStack
+            w='full'
+            cursor='pointer'
+            onClick={() => onDropdownChange('screenSize')}
+          >
+            <Text>Screen Size</Text>
+            <Spacer />
+            <Box>{dropdown.screenSize ? <BsDash /> : <BsPlus />}</Box>
+          </HStack>
+          {dropdown.screenSize && (
+            <Box pl='2' mt='2'>
+              <HStack w='full' fontSize='sm'>
+                <Text fontSize='xs'>{filters.screenSize[0]} "</Text>
+                <Spacer />
+                <Text fontSize='xs'>{filters.screenSize[1]} "</Text>
+              </HStack>
+              <RangeSlider
+                defaultValue={[1, 64]}
+                min={1}
+                max={64}
+                colorScheme='accent'
+                onChangeEnd={e => onRangeSliderChange('screenSize', e)}
                 size='sm'
               >
                 <RangeSliderTrack>
@@ -230,4 +235,4 @@ const FilterMotherboard = () => {
   )
 }
 
-export default FilterMotherboard
+export default FilterMonitor

@@ -16,36 +16,34 @@ import { useState } from 'react'
 import { BsDash, BsPlus } from 'react-icons/bs'
 import { ReactText } from 'react-router/node_modules/@types/react'
 import {
-  motherboardDropdownInterface,
-  motherboardDropdownType,
-  motherboardFilterInterface,
+  cpuCoolerDropdownInterface,
+  cpuCoolerDropdownType,
+  cpuCoolerFilterInterface,
 } from '../interface'
 
-const defaultDropdown: motherboardDropdownInterface = {
+const defaultDropdown: cpuCoolerDropdownInterface = {
   manufacturer: false,
   socket: false,
-  formFactor: false,
-  memorySlot: false,
-  memoryType: false,
+  waterCooled: false,
+  height: false,
 }
 
-const defaultFilter: motherboardFilterInterface = {
+const defaultFilter: cpuCoolerFilterInterface = {
   manufacturer: ['all'],
   socket: ['all'],
-  memoryType: ['all'],
-  memorySlot: [1, 16],
-  formFactor: ['all'],
+  waterCooled: ['all'],
+  height: [1, 200],
 }
 
-const FilterMotherboard = () => {
+const FilterCpuCooler = () => {
   const [dropdown, setDropdown] = useState(defaultDropdown)
   const [filters, setFilters] = useState(defaultFilter)
 
-  function onDropdownChange(e: motherboardDropdownType) {
+  function onDropdownChange(e: cpuCoolerDropdownType) {
     setDropdown({ ...dropdown, [e]: !dropdown[e] })
   }
 
-  function onCheckBoxChange(e: motherboardDropdownType, value: ReactText[]) {
+  function onCheckBoxChange(e: cpuCoolerDropdownType, value: ReactText[]) {
     if (filters[e][0] === 'all' && value.length > 1) {
       setFilters({ ...filters, [e]: value.filter(current => current !== 'all') })
     } else if (
@@ -62,7 +60,7 @@ const FilterMotherboard = () => {
     }
   }
 
-  function onRangeSliderChange(e: motherboardDropdownType, value: number[]) {
+  function onRangeSliderChange(e: cpuCoolerDropdownType, value: number[]) {
     setFilters({ ...filters, [e]: value })
   }
 
@@ -132,26 +130,24 @@ const FilterMotherboard = () => {
           <HStack
             w='full'
             cursor='pointer'
-            onClick={() => onDropdownChange('formFactor')}
+            onClick={() => onDropdownChange('waterCooled')}
           >
-            <Text>Form Factor</Text>
+            <Text>Water Cooled</Text>
             <Spacer />
-            <Box>{dropdown.formFactor ? <BsDash /> : <BsPlus />}</Box>
+            <Box>{dropdown.waterCooled ? <BsDash /> : <BsPlus />}</Box>
           </HStack>
-          {dropdown.formFactor && (
+          {dropdown.waterCooled && (
             <Box pl='2' mt='2'>
               <CheckboxGroup
-                value={filters.formFactor}
-                onChange={value => onCheckBoxChange('formFactor', value)}
+                value={filters.waterCooled}
+                onChange={value => onCheckBoxChange('waterCooled', value)}
                 size='sm'
                 colorScheme='accent'
               >
                 <VStack align='flex-start'>
                   <Checkbox value='all'>All</Checkbox>
-                  <Checkbox value='ATX'>ATX</Checkbox>
-                  <Checkbox value='EATX'>EATX</Checkbox>
-                  <Checkbox value='Micro ATX'>Micro ATX</Checkbox>
-                  <Checkbox value='Mini ATX'>Mini ATX</Checkbox>
+                  <Checkbox value='Yes'>Yes</Checkbox>
+                  <Checkbox value='No'>No</Checkbox>
                 </VStack>
               </CheckboxGroup>
             </Box>
@@ -161,59 +157,24 @@ const FilterMotherboard = () => {
         <Divider borderColor='gray.500' />
 
         <Box w='full'>
-          <HStack
-            w='full'
-            cursor='pointer'
-            onClick={() => onDropdownChange('memoryType')}
-          >
-            <Text>Memory Type</Text>
+          <HStack w='full' cursor='pointer' onClick={() => onDropdownChange('height')}>
+            <Text>Height</Text>
             <Spacer />
-            <Box>{dropdown.memoryType ? <BsDash /> : <BsPlus />}</Box>
+            <Box>{dropdown.height ? <BsDash /> : <BsPlus />}</Box>
           </HStack>
-          {dropdown.memoryType && (
-            <Box pl='2' mt='2'>
-              <CheckboxGroup
-                value={filters.memoryType}
-                onChange={value => onCheckBoxChange('memoryType', value)}
-                size='sm'
-                colorScheme='accent'
-              >
-                <VStack align='flex-start'>
-                  <Checkbox value='all'>All</Checkbox>
-                  <Checkbox value='DDR2'>DDR2</Checkbox>
-                  <Checkbox value='DDR3'>DDR3</Checkbox>
-                  <Checkbox value='DDR4'>DDR4</Checkbox>
-                </VStack>
-              </CheckboxGroup>
-            </Box>
-          )}
-        </Box>
-
-        <Divider borderColor='gray.500' />
-
-        <Box w='full'>
-          <HStack
-            w='full'
-            cursor='pointer'
-            onClick={() => onDropdownChange('memorySlot')}
-          >
-            <Text>Memory Slot</Text>
-            <Spacer />
-            <Box>{dropdown.memorySlot ? <BsDash /> : <BsPlus />}</Box>
-          </HStack>
-          {dropdown.memorySlot && (
+          {dropdown.height && (
             <Box pl='2' mt='2'>
               <HStack w='full' fontSize='sm'>
-                <Text fontSize='xs'>{filters.memorySlot[0]}</Text>
+                <Text fontSize='xs'>{filters.height[0]} mm</Text>
                 <Spacer />
-                <Text fontSize='xs'>{filters.memorySlot[1]}</Text>
+                <Text fontSize='xs'>{filters.height[1]} mm</Text>
               </HStack>
               <RangeSlider
-                defaultValue={[1, 16]}
+                defaultValue={[1, 200]}
                 min={1}
-                max={16}
+                max={200}
                 colorScheme='accent'
-                onChangeEnd={e => onRangeSliderChange('memorySlot', e)}
+                onChangeEnd={e => onRangeSliderChange('height', e)}
                 size='sm'
               >
                 <RangeSliderTrack>
@@ -230,4 +191,4 @@ const FilterMotherboard = () => {
   )
 }
 
-export default FilterMotherboard
+export default FilterCpuCooler

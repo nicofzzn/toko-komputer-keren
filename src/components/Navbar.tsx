@@ -5,12 +5,12 @@ import {
   Flex,
   Center,
   Heading,
-  Link,
   Button,
   InputGroup,
   Input,
   InputRightElement,
 } from '@chakra-ui/react'
+import { Link } from 'react-router-dom'
 import { AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai'
 
 const Navbar = () => {
@@ -27,7 +27,7 @@ const Navbar = () => {
       <Container h='full' maxW='container.xl'>
         <Flex h='full' justifyContent='space-between'>
           <Center>
-            <Link href='/'>
+            <Link to='/'>
               <Heading fontSize='24px' fontWeight='bold' color='accent.500'>
                 nicofz
               </Heading>
@@ -56,9 +56,11 @@ const Navbar = () => {
             </Box>
           </Center>
           <Center>
-            <Link mx='5'>
-              <AiOutlineShoppingCart size='1.5em' />
-            </Link>
+            <Center mx='5'>
+              <Link to='/cart'>
+                <AiOutlineShoppingCart size='1.5em' />
+              </Link>
+            </Center>
             <Button
               mx='5'
               borderRadius='none'

@@ -6,6 +6,7 @@ export interface cpuDropdownInterface {
   series: boolean
   codeName: boolean
   coreCount: boolean
+  coreClock: boolean
   threadCount: boolean
   tdp: boolean
   releaseDate: boolean
@@ -17,6 +18,7 @@ export interface cpuFilterInterface {
   series: ReactText[]
   codeName: ReactText[]
   coreCount: number[]
+  coreClock: number[]
   threadCount: number[]
   tdp: number[]
   releaseDate: ReactText[]
@@ -32,6 +34,7 @@ export type cpuDropdownType =
   | 'tdp'
   | 'releaseDate'
   | 'socket'
+  | 'coreClock'
 
 // MOTHERBOARD
 export interface motherboardDropdownInterface {
@@ -89,3 +92,122 @@ export type gpuDropdownType =
   | 'boostClock'
   | 'interface'
   | 'tdp'
+
+// RAM
+export interface ramDropdownInterface {
+  manufacturer: boolean
+  type: boolean
+  speed: boolean
+  module: boolean
+}
+
+export interface ramFilterInterface {
+  manufacturer: ReactText[]
+  type: ReactText[]
+  module: ReactText[]
+  speed: number[]
+}
+
+export type ramDropdownType = 'manufacturer' | 'type' | 'speed' | 'module'
+
+// STORAGE
+export interface storageDropdownInterface {
+  manufacturer: boolean
+  capacity: boolean
+  interface: boolean
+  formFactor: boolean
+  nvme: boolean
+}
+
+export interface storageFilterInterface {
+  manufacturer: ReactText[]
+  capacity: number[]
+  interface: ReactText[]
+  formFactor: ReactText[]
+  nvme: ReactText[]
+}
+
+export type storageDropdownType =
+  | 'manufacturer'
+  | 'capacity'
+  | 'formFactor'
+  | 'interface'
+  | 'nvme'
+
+// PSU
+export interface psuDropdownInterface {
+  manufacturer: boolean
+  efficiency: boolean
+  wattage: boolean
+  modular: boolean
+  type: boolean
+}
+
+export interface psuFilterInterface {
+  manufacturer: ReactText[]
+  efficiency: ReactText[]
+  wattage: number[]
+  modular: ReactText[]
+  type: ReactText[]
+}
+
+export type psuDropdownType =
+  | 'manufacturer'
+  | 'efficiency'
+  | 'wattage'
+  | 'modular'
+  | 'type'
+
+// MONITOR
+export interface monitorDropdownInterface {
+  manufacturer: boolean
+  screenSize: boolean
+  refreshRate: boolean
+  resulution: boolean
+  panelType: boolean
+}
+
+export interface monitorFilterInterface {
+  manufacturer: ReactText[]
+  screenSize: number[]
+  refreshRate: number[]
+  resulution: ReactText[]
+  panelType: ReactText[]
+}
+
+export type monitorDropdownType =
+  | 'manufacturer'
+  | 'screenSize'
+  | 'refreshRate'
+  | 'resulution'
+  | 'panelType'
+
+// CPU COOLER
+export interface cpuCoolerDropdownInterface {
+  manufacturer: boolean
+  height: boolean
+  socket: boolean
+  waterCooled: boolean
+}
+
+export interface cpuCoolerFilterInterface {
+  manufacturer: ReactText[]
+  height: number[]
+  socket: ReactText[]
+  waterCooled: ReactText[]
+}
+
+export type cpuCoolerDropdownType = 'manufacturer' | 'height' | 'socket' | 'waterCooled'
+
+// CPU CASE
+export interface caseDropdownInterface {
+  manufacturer: boolean
+  formFactor: boolean
+}
+
+export interface caseFilterInterface {
+  manufacturer: ReactText[]
+  formFactor: ReactText[]
+}
+
+export type caseDropdownType = 'manufacturer' | 'formFactor'

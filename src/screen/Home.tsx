@@ -13,14 +13,13 @@ import { Link } from 'react-router-dom'
 import {
   Motherboard,
   Cpu,
-  Fan,
   Gpu,
   Monitor,
   Storage,
   Ram,
   Psu,
-  Mouse,
-  Keyboard,
+  CpuCooler,
+  Case,
 } from '../style/icons'
 
 const Home = () => {
@@ -46,9 +45,9 @@ const Home = () => {
         </Container>
       </Box>
       <Container py='20' maxW='900px'>
-        <Text ml='8' mb='10' fontSize='1.5em'>
-          Find product by categories
-        </Text>
+        <Center mb='16'>
+          <Text fontSize='1.5em'>Find product by categories</Text>
+        </Center>
         <Grid templateColumns='repeat(4, 1fr)' gap='4em'>
           <GridItem>
             <Center>
@@ -118,142 +117,134 @@ const Home = () => {
           </GridItem>
           <GridItem>
             <Center>
-              <VStack
-                p='2'
-                _hover={{
-                  color: 'accent.500',
-                  cursor: 'pointer',
-                  position: 'relative',
-                  transform: 'translateY(-3px)',
-                  transitionDuration: '.1s',
-                }}
-                transitionDuration='.1s'
-              >
-                <Box w='80px'>
-                  <Ram />
-                </Box>
-                <Text>RAM</Text>
-              </VStack>
+              <Link to='products/ram'>
+                <VStack
+                  p='2'
+                  _hover={{
+                    color: 'accent.500',
+                    cursor: 'pointer',
+                    position: 'relative',
+                    transform: 'translateY(-3px)',
+                    transitionDuration: '.1s',
+                  }}
+                  transitionDuration='.1s'
+                >
+                  <Box w='80px'>
+                    <Ram />
+                  </Box>
+                  <Text>RAM</Text>
+                </VStack>
+              </Link>
             </Center>
           </GridItem>
           <GridItem>
             <Center>
-              <VStack
-                p='2'
-                _hover={{
-                  color: 'accent.500',
-                  cursor: 'pointer',
-                  position: 'relative',
-                  transform: 'translateY(-3px)',
-                  transitionDuration: '.1s',
-                }}
-                transitionDuration='.1s'
-              >
-                <Box w='80px'>
-                  <Storage />
-                </Box>
-                <Text>Storage</Text>
-              </VStack>
+              <Link to='products/storage'>
+                <VStack
+                  p='2'
+                  _hover={{
+                    color: 'accent.500',
+                    cursor: 'pointer',
+                    position: 'relative',
+                    transform: 'translateY(-3px)',
+                    transitionDuration: '.1s',
+                  }}
+                  transitionDuration='.1s'
+                >
+                  <Box w='80px'>
+                    <Storage />
+                  </Box>
+                  <Text>Storage</Text>
+                </VStack>
+              </Link>
             </Center>
           </GridItem>
           <GridItem>
             <Center>
-              <VStack
-                p='2'
-                _hover={{
-                  color: 'accent.500',
-                  cursor: 'pointer',
-                  position: 'relative',
-                  transform: 'translateY(-3px)',
-                  transitionDuration: '.1s',
-                }}
-                transitionDuration='.1s'
-              >
-                <Box w='80px'>
-                  <Psu />
-                </Box>
-                <Text>Power Supply</Text>
-              </VStack>
+              <Link to='products/psu'>
+                <VStack
+                  p='2'
+                  _hover={{
+                    color: 'accent.500',
+                    cursor: 'pointer',
+                    position: 'relative',
+                    transform: 'translateY(-3px)',
+                    transitionDuration: '.1s',
+                  }}
+                  transitionDuration='.1s'
+                >
+                  <Box w='80px'>
+                    <Psu />
+                  </Box>
+                  <Text>Power Supply</Text>
+                </VStack>
+              </Link>
             </Center>
           </GridItem>
           <GridItem>
             <Center>
-              <VStack
-                p='2'
-                _hover={{
-                  color: 'accent.500',
-                  cursor: 'pointer',
-                  position: 'relative',
-                  transform: 'translateY(-3px)',
-                  transitionDuration: '.1s',
-                }}
-                transitionDuration='.1s'
-              >
-                <Box w='80px'>
-                  <Monitor />
-                </Box>
-                <Text>Monitor</Text>
-              </VStack>
+              <Link to='products/monitor'>
+                <VStack
+                  p='2'
+                  _hover={{
+                    color: 'accent.500',
+                    cursor: 'pointer',
+                    position: 'relative',
+                    transform: 'translateY(-3px)',
+                    transitionDuration: '.1s',
+                  }}
+                  transitionDuration='.1s'
+                >
+                  <Box w='80px'>
+                    <Monitor />
+                  </Box>
+                  <Text>Monitor</Text>
+                </VStack>
+              </Link>
             </Center>
           </GridItem>
           <GridItem>
             <Center>
-              <VStack
-                p='2'
-                _hover={{
-                  color: 'accent.500',
-                  cursor: 'pointer',
-                  position: 'relative',
-                  transform: 'translateY(-3px)',
-                  transitionDuration: '.1s',
-                }}
-                transitionDuration='.1s'
-              >
-                <Box w='80px'>
-                  <Fan />
-                </Box>
-                <Text>Fan</Text>
-              </VStack>
+              <Link to='products/cpu-cooler'>
+                <VStack
+                  p='2'
+                  _hover={{
+                    color: 'accent.500',
+                    cursor: 'pointer',
+                    position: 'relative',
+                    transform: 'translateY(-3px)',
+                    transitionDuration: '.1s',
+                  }}
+                  transitionDuration='.1s'
+                >
+                  <Box w='80px'>
+                    <CpuCooler />
+                  </Box>
+                  <Text>Cpu Cooler</Text>
+                </VStack>
+              </Link>
             </Center>
           </GridItem>
           <GridItem>
             <Center>
-              <VStack
-                p='2'
-                _hover={{
-                  color: 'accent.500',
-                  cursor: 'pointer',
-                  position: 'relative',
-                  transform: 'translateY(-3px)',
-                  transitionDuration: '.1s',
-                }}
-                transitionDuration='.1s'
-              >
-                <Box w='80px'>
-                  <Mouse />
-                </Box>
-                <Text>Mouse</Text>
-              </VStack>
-            </Center>
-          </GridItem>
-          <GridItem>
-            <Center>
-              <VStack
-                p='2'
-                _hover={{
-                  color: 'accent.500',
-                  cursor: 'pointer',
-                  position: 'relative',
-                  transform: 'translateY(-3px)',
-                  transitionDuration: '.1s',
-                }}
-                transitionDuration='.1s'
-              >
-                <Box w='80px'>
-                  <Keyboard />
-                </Box>
-                <Text>Keyboard</Text>
-              </VStack>
+              <Link to='products/case'>
+                <VStack
+                  p='2'
+                  _hover={{
+                    color: 'accent.500',
+                    cursor: 'pointer',
+                    position: 'relative',
+                    transform: 'translateY(-3px)',
+                    transitionDuration: '.1s',
+                  }}
+                  transitionDuration='.1s'
+                >
+                  <Box w='80px'>
+                    <Case />
+                  </Box>
+                  <Text>Case</Text>
+                </VStack>
+              </Link>
             </Center>
           </GridItem>
         </Grid>

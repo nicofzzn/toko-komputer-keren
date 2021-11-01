@@ -22,6 +22,7 @@ const defaultDropdown: cpuDropdownInterface = {
   series: false,
   codeName: false,
   coreCount: false,
+  coreClock: false,
   tdp: false,
   threadCount: false,
   releaseDate: false,
@@ -33,6 +34,7 @@ const defaultFilter: cpuFilterInterface = {
   series: ['all'],
   codeName: ['all'],
   coreCount: [1, 64],
+  coreClock: [1, 5],
   threadCount: [1, 288],
   tdp: [1, 400],
   releaseDate: ['all'],
@@ -208,6 +210,40 @@ const FilterCpu = () => {
                 max={64}
                 colorScheme='accent'
                 onChangeEnd={e => onRangeSliderChange('coreCount', e)}
+                size='sm'
+              >
+                <RangeSliderTrack>
+                  <RangeSliderFilledTrack />
+                </RangeSliderTrack>
+                <RangeSliderThumb bg='accent.500' index={0} />
+                <RangeSliderThumb bg='accent.500' index={1} />
+              </RangeSlider>
+            </Box>
+          )}
+        </Box>
+
+        <Divider borderColor='gray.500' />
+
+        <Box w='full'>
+          <HStack w='full' cursor='pointer' onClick={() => onDropdownChange('coreClock')}>
+            <Text>Core Clock</Text>
+            <Spacer />
+            <Box>{dropdown.coreClock ? <BsDash /> : <BsPlus />}</Box>
+          </HStack>
+          {dropdown.coreClock && (
+            <Box pl='2' mt='2'>
+              <HStack w='full' fontSize='sm'>
+                <Text fontSize='xs'>{filters.coreClock[0]} GHz</Text>
+                <Spacer />
+                <Text fontSize='xs'>{filters.coreClock[1]} GHz</Text>
+              </HStack>
+              <RangeSlider
+                defaultValue={[1, 5]}
+                min={1}
+                max={5}
+                step={0.1}
+                colorScheme='accent'
+                onChangeEnd={e => onRangeSliderChange('coreClock', e)}
                 size='sm'
               >
                 <RangeSliderTrack>

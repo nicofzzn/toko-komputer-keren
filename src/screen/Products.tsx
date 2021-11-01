@@ -5,6 +5,12 @@ import FilterCpu from '../components/FilterCpu'
 import PriceFilter from '../components/PriceFilter'
 import FilterMotherboard from '../components/FilterMotherboard'
 import FilterGpu from '../components/FilterGpu'
+import FilterRam from '../components/FilterRam'
+import FilterStorage from '../components/FilterStorage'
+import FilterPsu from '../components/FilterPsu'
+import FilterMonitor from '../components/FilterMonitor'
+import FilterCpuCooler from '../components/FilterCpuCooler'
+import FilterCase from '../components/FilterCase'
 
 const Products = () => {
   const { category } = useParams<{ category: string }>()
@@ -17,6 +23,18 @@ const Products = () => {
         return <FilterMotherboard />
       case 'gpu':
         return <FilterGpu />
+      case 'ram':
+        return <FilterRam />
+      case 'storage':
+        return <FilterStorage />
+      case 'psu':
+        return <FilterPsu />
+      case 'monitor':
+        return <FilterMonitor />
+      case 'cpu-cooler':
+        return <FilterCpuCooler />
+      case 'case':
+        return <FilterCase />
       default:
         return <p>kategori</p>
     }

@@ -15,7 +15,11 @@ import {
 import { useState } from 'react'
 import { BsDash, BsPlus } from 'react-icons/bs'
 import { ReactText } from 'react-router/node_modules/@types/react'
-import { cpuDropdownInterface, cpuDropdownType, cpuFilterInterface } from '../interface'
+import {
+  cpuDropdownInterface,
+  cpuDropdownType,
+  cpuFilterInterface,
+} from '../../interface'
 
 const defaultDropdown: cpuDropdownInterface = {
   manufacturer: false,

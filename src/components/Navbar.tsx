@@ -41,12 +41,12 @@ const Navbar = () => {
                   borderColor='gray.400'
                   _placeholder={{ color: 'gray.400' }}
                   _hover={{ borderColor: 'gray.400' }}
-                  _focus={{
-                    outline: 'solid',
-                    outlineWidth: '2px',
-                    outlineColor: 'accent.300',
-                    outlineOffset: '-1px',
-                  }}
+                  // _focus={{
+                  //   outline: 'solid',
+                  //   outlineWidth: '2px',
+                  //   outlineColor: 'accent.300',
+                  //   outlineOffset: '-1px',
+                  // }}
                   borderRadius='0'
                 />
                 <InputRightElement _hover={{ cursor: 'pointer' }}>
@@ -61,15 +61,12 @@ const Navbar = () => {
                 <AiOutlineShoppingCart size='1.5em' />
               </Link>
             </Center>
-            <Button
-              mx='5'
-              borderRadius='none'
-              bg='accent.500'
-              _hover={{ bg: 'accent.400' }}
-              color='gray.100'
-            >
-              Login
-            </Button>
+
+            <Link to='/login'>
+              <Button mx='5' borderRadius='none' colorScheme='accent'>
+                Login
+              </Button>
+            </Link>
           </Center>
         </Flex>
       </Container>

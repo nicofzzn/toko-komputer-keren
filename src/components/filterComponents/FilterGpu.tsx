@@ -15,7 +15,11 @@ import {
 import { useState } from 'react'
 import { BsDash, BsPlus } from 'react-icons/bs'
 import { ReactText } from 'react-router/node_modules/@types/react'
-import { gpuDropdownInterface, gpuDropdownType, gpuFilterInterface } from '../interface'
+import {
+  gpuDropdownInterface,
+  gpuDropdownType,
+  gpuFilterInterface,
+} from '../../interface'
 
 const defaultDropdown: gpuDropdownInterface = {
   manufacturer: false,

@@ -15,7 +15,11 @@ import {
 import { useState } from 'react'
 import { BsDash, BsPlus } from 'react-icons/bs'
 import { ReactText } from 'react-router/node_modules/@types/react'
-import { ramDropdownInterface, ramDropdownType, ramFilterInterface } from '../interface'
+import {
+  ramDropdownInterface,
+  ramDropdownType,
+  ramFilterInterface,
+} from '../../interface'
 
 const defaultDropdown: ramDropdownInterface = {
   manufacturer: false,

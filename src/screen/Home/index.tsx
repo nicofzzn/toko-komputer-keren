@@ -20,7 +20,7 @@ import {
   Psu,
   CpuCooler,
   Case,
-} from '../style/icons'
+} from '../../style/icons'
 
 const Home = () => {
   return (
@@ -31,13 +31,7 @@ const Home = () => {
             <GridItem>
               <Heading fontSize='5xl'>Welcome to the nicofz store</Heading>
               <Text fontSize='large'>We help you find the best part for your PC</Text>
-              <Button
-                my='1em'
-                borderRadius='none'
-                bg='accent.500'
-                _hover={{ bg: 'accent.400' }}
-                color='gray.100'
-              >
+              <Button my='1em' borderRadius='none' colorScheme='accent'>
                 Build your PC
               </Button>
             </GridItem>

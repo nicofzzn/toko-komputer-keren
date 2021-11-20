@@ -1,6 +1,6 @@
 import { Box, VStack, Text, InputGroup, InputLeftElement, Input } from '@chakra-ui/react'
 
-const PriceFilter = () => {
+const FilterPrice = () => {
   return (
     <Box w='full' fontWeight='medium'>
       <Text>Price</Text>
@@ -40,4 +40,4 @@ const PriceFilter = () => {
   )
 }
 
-export default PriceFilter
+export default FilterPrice

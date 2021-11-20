@@ -15,7 +15,7 @@ import {
   caseDropdownInterface,
   caseDropdownType,
   caseFilterInterface,
-} from '../interface'
+} from '../../interface'
 
 const defaultDropdown: caseDropdownInterface = {
   manufacturer: false,

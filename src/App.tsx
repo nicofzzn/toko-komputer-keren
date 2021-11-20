@@ -7,11 +7,20 @@ import Navbar from './components/Navbar'
 import Home from './screen/Home'
 import Footer from './components/Footer'
 import Products from './screen/Products'
+import Login from './screen/Login'
 
 export const App = () => (
   <ChakraProvider theme={theme}>
     <Router>
-      <Navbar />
+      <Switch>
+        <Route exact path='/login'>
+          <Login />
+        </Route>
+        <Route path='/'>
+          <Navbar />
+        </Route>
+      </Switch>
+
       <Switch>
         <Route exact path='/'>
           <Home />
@@ -20,7 +29,10 @@ export const App = () => (
           <Products />
         </Route>
       </Switch>
-      <Footer />
+
+      <Route exact path='/'>
+        <Footer />
+      </Route>
     </Router>
   </ChakraProvider>
 )

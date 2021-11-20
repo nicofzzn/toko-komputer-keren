@@ -15,7 +15,11 @@ import {
 import { useState } from 'react'
 import { BsDash, BsPlus } from 'react-icons/bs'
 import { ReactText } from 'react-router/node_modules/@types/react'
-import { psuDropdownInterface, psuDropdownType, psuFilterInterface } from '../interface'
+import {
+  psuDropdownInterface,
+  psuDropdownType,
+  psuFilterInterface,
+} from '../../interface'
 
 const defaultDropdown: psuDropdownInterface = {
   manufacturer: false,

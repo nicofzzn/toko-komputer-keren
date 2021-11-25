@@ -8,6 +8,7 @@ import Footer from './components/Footer'
 import Home from './screen/Home'
 import Products from './screen/Products'
 import Login from './screen/Login'
+import Cart from './screen/Cart'
 
 export const App = () => (
   <ChakraProvider theme={theme}>
@@ -27,6 +28,9 @@ export const App = () => (
         </Route>
         <Route path='/products/:category?'>
           <Products />
+        </Route>
+        <Route path='/cart'>
+          <Cart />
         </Route>
       </Switch>
 

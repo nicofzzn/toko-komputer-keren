@@ -42,7 +42,17 @@ const Home = () => {
         <Center mb='16'>
           <Text fontSize='1.5em'>Find product by categories</Text>
         </Center>
-        <Grid templateColumns='repeat(4, 1fr)' gap='4em'>
+        <Grid
+          templateColumns={{
+            base: 'repeat(2, 1fr)',
+            sm: 'repeat(3, 1fr)',
+            md: 'repeat(4, 1fr)',
+          }}
+          gap={{
+            base: '2em',
+            md: '4em',
+          }}
+        >
           <GridItem>
             <Center>
               <Link to='products/motherboard'>

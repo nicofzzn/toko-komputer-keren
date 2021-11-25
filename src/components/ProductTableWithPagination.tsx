@@ -1,5 +1,12 @@
 import { useMemo } from 'react'
-import { useTable, useRowSelect, CellProps, Column, usePagination } from 'react-table'
+import {
+  useTable,
+  useRowSelect,
+  CellProps,
+  Column,
+  usePagination,
+  useSortBy,
+} from 'react-table'
 import {
   Table,
   Thead,
@@ -53,6 +60,7 @@ const ProductTableWithPagination = <T extends {}>({ unMemoizedData }: Prop<T>) =
     previousPage,
     setPageSize,
     selectedFlatRows,
+    toggleAllRowsSelected,
     state: { pageIndex, pageSize, selectedRowIds },
   } = useTable(
     {
@@ -60,6 +68,7 @@ const ProductTableWithPagination = <T extends {}>({ unMemoizedData }: Prop<T>) =
       data,
       initialState: { hiddenColumns: ['id'], pageSize: 3 },
     },
+    useSortBy,
     usePagination,
     useRowSelect,
     hooks => {
@@ -112,6 +121,14 @@ const ProductTableWithPagination = <T extends {}>({ unMemoizedData }: Prop<T>) =
           )}
         </code>
       </pre>
+
+      <Button
+        disabled={Object.keys(selectedRowIds).length === 0}
+        onClick={() => toggleAllRowsSelected(false)}
+      >
+        Select none
+      </Button>
+
       <Table {...getTableProps()}>
         <Thead>
           {
@@ -123,11 +140,14 @@ const ProductTableWithPagination = <T extends {}>({ unMemoizedData }: Prop<T>) =
                   // Loop over the headers in each row
                   headerGroup.headers.map(column => (
                     // Apply the header cell props
-                    <Th px='3' {...column.getHeaderProps()}>
+                    <Th px='3' {...column.getHeaderProps(column.getSortByToggleProps())}>
                       {
                         // Render the header
                         column.render('Header')
                       }
+                      <span>
+                        {column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : ''}
+                      </span>
                     </Th>
                   ))
                 }
@@ -185,6 +205,7 @@ const ProductTableWithPagination = <T extends {}>({ unMemoizedData }: Prop<T>) =
           </strong>{' '}
         </span>
         <Input
+          min={1}
           type='number'
           defaultValue={pageIndex + 1}
           onChange={e => {

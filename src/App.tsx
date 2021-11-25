@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import '@fontsource/mulish'
 // components
 import Navbar from './components/Navbar'
-import Home from './screen/Home'
 import Footer from './components/Footer'
+import Home from './screen/Home'
 import Products from './screen/Products'
 import Login from './screen/Login'
 

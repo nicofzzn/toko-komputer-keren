@@ -37,7 +37,9 @@ function getColumns<T>(data: T[]) {
   return []
 }
 
-const ProductTableWithPagination = <T extends {}>({ unMemoizedData }: Prop<T>) => {
+const ProductTableWithPagination = <T extends { id: string }>({
+  unMemoizedData,
+}: Prop<T>) => {
   const data = useMemo(() => unMemoizedData, [unMemoizedData])
 
   const columns: readonly Column<object>[] = useMemo(
@@ -106,25 +108,10 @@ const ProductTableWithPagination = <T extends {}>({ unMemoizedData }: Prop<T>) =
 
   return (
     <div>
-      <pre>
-        <code>
-          {JSON.stringify(
-            {
-              pageIndex,
-              pageSize,
-              pageCount,
-              canNextPage,
-              canPreviousPage,
-            },
-            null,
-            2
-          )}
-        </code>
-      </pre>
-
       <Button
         disabled={Object.keys(selectedRowIds).length === 0}
         onClick={() => toggleAllRowsSelected(false)}
+        variant='link'
       >
         Select none
       </Button>
@@ -185,6 +172,7 @@ const ProductTableWithPagination = <T extends {}>({ unMemoizedData }: Prop<T>) =
           }
         </Tbody>
       </Table>
+
       <ButtonGroup>
         <Button disabled={!canPreviousPage} onClick={() => gotoPage(0)}>
           {'<<'}
@@ -198,12 +186,14 @@ const ProductTableWithPagination = <T extends {}>({ unMemoizedData }: Prop<T>) =
         <Button disabled={!canNextPage} onClick={() => gotoPage(pageCount - 1)}>
           {'>>'}
         </Button>
+
         <span>
           Page{' '}
           <strong>
             {pageIndex + 1} of {pageOptions.length}
           </strong>{' '}
         </span>
+
         <Input
           min={1}
           type='number'
@@ -215,6 +205,7 @@ const ProductTableWithPagination = <T extends {}>({ unMemoizedData }: Prop<T>) =
           }}
         />
       </ButtonGroup>
+
       <div>
         <span>Page size</span>
         <Select w='sm' value={pageSize} onChange={e => setPageSize(+e.target.value)}>
@@ -225,6 +216,23 @@ const ProductTableWithPagination = <T extends {}>({ unMemoizedData }: Prop<T>) =
           ))}
         </Select>
       </div>
+
+      <pre>
+        <code>
+          {JSON.stringify(
+            {
+              pageIndex,
+              pageSize,
+              pageCount,
+              canNextPage,
+              canPreviousPage,
+            },
+            null,
+            2
+          )}
+        </code>
+      </pre>
+
       <pre>
         <code>
           {JSON.stringify(

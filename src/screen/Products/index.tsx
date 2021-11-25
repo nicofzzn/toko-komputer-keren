@@ -1,16 +1,16 @@
 import { Box, Container, Flex, VStack, Divider } from '@chakra-ui/react'
 import { useParams } from 'react-router-dom'
-import FilterResult from '../../components/filterComponents/FilterResult'
-import FilterCpu from '../../components/filterComponents/FilterCpu'
-import FilterPrice from '../../components/filterComponents/FilterPrice'
-import FilterMotherboard from '../../components/filterComponents/FilterMotherboard'
-import FilterGpu from '../../components/filterComponents/FilterGpu'
-import FilterRam from '../../components/filterComponents/FilterRam'
-import FilterStorage from '../../components/filterComponents/FilterStorage'
-import FilterPsu from '../../components/filterComponents/FilterPsu'
-import FilterMonitor from '../../components/filterComponents/FilterMonitor'
-import FilterCpuCooler from '../../components/filterComponents/FilterCpuCooler'
-import FilterCase from '../../components/filterComponents/FilterCase'
+import ProductList from '../../components/ProductList'
+import FilterCpu from '../../components/FilterComponents/FilterCpu'
+import FilterPrice from '../../components/FilterComponents/FilterPrice'
+import FilterMotherboard from '../../components/FilterComponents/FilterMotherboard'
+import FilterGpu from '../../components/FilterComponents/FilterGpu'
+import FilterRam from '../../components/FilterComponents/FilterRam'
+import FilterStorage from '../../components/FilterComponents/FilterStorage'
+import FilterPsu from '../../components/FilterComponents/FilterPsu'
+import FilterMonitor from '../../components/FilterComponents/FilterMonitor'
+import FilterCpuCooler from '../../components/FilterComponents/FilterCpuCooler'
+import FilterCase from '../../components/FilterComponents/FilterCase'
 
 const Products = () => {
   const { category } = useParams<{ category: string }>()
@@ -55,7 +55,7 @@ const Products = () => {
           </VStack>
         </Box>
         <Box w='78%' p='2'>
-          <FilterResult />
+          <ProductList />
         </Box>
       </Flex>
     </Container>

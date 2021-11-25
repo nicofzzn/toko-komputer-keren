@@ -1,7 +1,3 @@
-import { HStack, Spacer, Box } from '@chakra-ui/react'
-import ProductTable from '../ProductTable'
-import ProductTableWithPagination from '../ProductTableWithPagination'
-
 const data = [
   {
     id: '2oiiosdvso',
@@ -165,18 +161,4 @@ const data = [
   },
 ]
 
-const FilterResult = () => {
-  return (
-    <>
-      <HStack>
-        <Spacer />
-      </HStack>
-      <Box>
-        <ProductTableWithPagination unMemoizedData={data} />
-        {/* <ProductTable unMemoizedData={data} /> */}
-      </Box>
-    </>
-  )
-}
-
-export default FilterResult
+export default data

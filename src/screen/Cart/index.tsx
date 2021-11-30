@@ -1,18 +1,34 @@
-import { Heading, Container, Flex, VStack, Divider, Spacer, Box } from '@chakra-ui/react'
+import { useState } from 'react'
+import { Heading, Container } from '@chakra-ui/react'
+import CartTable from '../../components/CartTable'
 
 const Cart = () => {
+  const [data, setData] = useState([
+    { id: 'asdfasdf', img: 'asdf', name: 'asrock a320m', qty: 1, price: 750000 },
+    { id: 'asdfasdf', img: 'asdf', name: 'asrock a320m', qty: 1, price: 750000 },
+    { id: 'asdfasdf', img: 'asdf', name: 'asrock a320m', qty: 1, price: 750000 },
+  ])
+
+  function onQtyChange(rowIndex: number, value: number) {
+    setData(old =>
+      old.map((row, index) => {
+        if (rowIndex === index) {
+          return {
+            ...old[rowIndex],
+            qty: value <= 1 ? 1 : value,
+          }
+        }
+        return row
+      })
+    )
+  }
+
   return (
-    <Container maxW='container.xl' py='10' minH='calc(100vh - 75px - 60px)'>
-      <Heading size='md'>Cart</Heading>
-      <Flex bg='red'>
-        <Box flex='5' bg='tomato'>
-          1
-        </Box>
-        <Spacer />
-        <Box flex='1' bg='lime'>
-          2
-        </Box>
-      </Flex>
+    <Container maxW='container.xl' p='10' minH='calc(100vh - 75px - 60px)'>
+      <Heading size='lg' mb='5'>
+        Cart
+      </Heading>
+      <CartTable unMemoizedData={data} onQtyChange={onQtyChange} />
     </Container>
   )
 }

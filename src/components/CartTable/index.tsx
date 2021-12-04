@@ -1,7 +1,8 @@
 import { useMemo } from 'react'
-import { Box, Table, Tbody, Tr, Td } from '@chakra-ui/react'
-import { useTable, Column, useRowState } from 'react-table'
+import { Box, Table, Tbody, Tr, Td, Center, Icon } from '@chakra-ui/react'
+import { useTable, Column, CellProps } from 'react-table'
 import CellRenderer from './CellRenderer'
+import { AiOutlineDelete } from 'react-icons/ai'
 
 type Prop<T> = {
   unMemoizedData: T[]
@@ -59,7 +60,24 @@ const CartTable = <
       },
       updateMyData,
     },
-    useRowState
+    hooks => {
+      hooks.visibleColumns.push(columns => [
+        ...columns,
+        {
+          id: 'delete',
+          Header: () => {
+            return <div></div>
+          },
+          Cell: ({ row }: React.PropsWithChildren<CellProps<object, any>>) => {
+            return (
+              <Center>
+                <Icon as={AiOutlineDelete} w='6' h='6' _hover={{ cursor: 'pointer' }} />
+              </Center>
+            )
+          },
+        },
+      ])
+    }
   )
 
   return (
@@ -79,13 +97,11 @@ const CartTable = <
                     row.cells.map(cell => {
                       // Apply the cell props
                       return (
-                        <Td p='3' {...cell.getCellProps()} fontSize='lg'>
-                          <CellRenderer
-                            cell={cell}
-                            onQtyChange={onQtyChange}
-                            rowIndex={rowIndex}
-                          />
-                        </Td>
+                        <CellRenderer
+                          cell={cell}
+                          onQtyChange={onQtyChange}
+                          rowIndex={rowIndex}
+                        />
                       )
                     })
                   }

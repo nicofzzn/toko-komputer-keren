@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Heading, Container } from '@chakra-ui/react'
 import CartTable from '../../components/CartTable'
+import CartTotal from '../../components/CartTable/CartTotal'
 
 const Cart = () => {
   const [data, setData] = useState([
@@ -23,12 +24,17 @@ const Cart = () => {
     )
   }
 
+  function totalPrice() {
+    return data.reduce((acc, d) => acc + d.qty * d.price, 0)
+  }
+
   return (
     <Container maxW='container.xl' p='10' minH='calc(100vh - 75px - 60px)'>
       <Heading size='lg' mb='5'>
         Cart
       </Heading>
       <CartTable unMemoizedData={data} onQtyChange={onQtyChange} />
+      <CartTotal totalPrice={totalPrice()} />
     </Container>
   )
 }

@@ -13,7 +13,7 @@ import FilterCpuCooler from '../../components/FilterComponents/FilterCpuCooler'
 import FilterCase from '../../components/FilterComponents/FilterCase'
 
 const Products = () => {
-  const { category } = useParams<{ category: string }>()
+  const { category } = useParams()
 
   function categoryFilter() {
     switch (category) {

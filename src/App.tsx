@@ -1,6 +1,7 @@
 import { ChakraProvider } from '@chakra-ui/react'
 import theme from './style/theme'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+// import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import '@fontsource/mulish'
 // components
 import Navbar from './components/Navbar'
@@ -9,10 +10,11 @@ import Home from './screen/Home'
 import Products from './screen/Products'
 import Login from './screen/Login'
 import Cart from './screen/Cart'
+import Checkout from './screen/Checkout'
 
 export const App = () => (
   <ChakraProvider theme={theme}>
-    <Router>
+    {/* <Router>
       <Switch>
         <Route exact path='/login'>
           <Login />
@@ -34,9 +36,19 @@ export const App = () => (
         </Route>
       </Switch>
 
+      <Route exact path='/checkout'>
+        <Checkout />
+      </Route>
+
       <Route exact path='/'>
         <Footer />
       </Route>
-    </Router>
+    </Router> */}
+
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Navbar />}></Route>
+      </Routes>
+    </BrowserRouter>
   </ChakraProvider>
 )

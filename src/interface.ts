@@ -1,5 +1,3 @@
-import { ReactText } from 'react-router/node_modules/@types/react'
-
 // CPU
 export interface cpuDropdownInterface {
   manufacturer: boolean
@@ -14,15 +12,15 @@ export interface cpuDropdownInterface {
 }
 
 export interface cpuFilterInterface {
-  manufacturer: ReactText[]
-  series: ReactText[]
-  codeName: ReactText[]
+  manufacturer: Array<string | number>
+  series: Array<string | number>
+  codeName: Array<string | number>
   coreCount: number[]
   coreClock: number[]
   threadCount: number[]
   tdp: number[]
-  releaseDate: ReactText[]
-  socket: ReactText[]
+  releaseDate: Array<string | number>
+  socket: Array<string | number>
 }
 
 export type cpuDropdownType =
@@ -46,11 +44,11 @@ export interface motherboardDropdownInterface {
 }
 
 export interface motherboardFilterInterface {
-  manufacturer: ReactText[]
-  formFactor: ReactText[]
-  memoryType: ReactText[]
+  manufacturer: Array<string | number>
+  formFactor: Array<string | number>
+  memoryType: Array<string | number>
   memorySlot: number[]
-  socket: ReactText[]
+  socket: Array<string | number>
 }
 
 export type motherboardDropdownType =
@@ -73,13 +71,13 @@ export interface gpuDropdownInterface {
 }
 
 export interface gpuFilterInterface {
-  manufacturer: ReactText[]
-  chipset: ReactText[]
-  memoryType: ReactText[]
+  manufacturer: Array<string | number>
+  chipset: Array<string | number>
+  memoryType: Array<string | number>
   memory: number[]
   coreClock: number[]
   boostClock: number[]
-  interface: ReactText[]
+  interface: Array<string | number>
   tdp: number[]
 }
 
@@ -102,9 +100,9 @@ export interface ramDropdownInterface {
 }
 
 export interface ramFilterInterface {
-  manufacturer: ReactText[]
-  type: ReactText[]
-  module: ReactText[]
+  manufacturer: Array<string | number>
+  type: Array<string | number>
+  module: Array<string | number>
   speed: number[]
 }
 
@@ -120,11 +118,11 @@ export interface storageDropdownInterface {
 }
 
 export interface storageFilterInterface {
-  manufacturer: ReactText[]
+  manufacturer: Array<string | number>
   capacity: number[]
-  interface: ReactText[]
-  formFactor: ReactText[]
-  nvme: ReactText[]
+  interface: Array<string | number>
+  formFactor: Array<string | number>
+  nvme: Array<string | number>
 }
 
 export type storageDropdownType =
@@ -144,11 +142,11 @@ export interface psuDropdownInterface {
 }
 
 export interface psuFilterInterface {
-  manufacturer: ReactText[]
-  efficiency: ReactText[]
+  manufacturer: Array<string | number>
+  efficiency: Array<string | number>
   wattage: number[]
-  modular: ReactText[]
-  type: ReactText[]
+  modular: Array<string | number>
+  type: Array<string | number>
 }
 
 export type psuDropdownType =
@@ -168,11 +166,11 @@ export interface monitorDropdownInterface {
 }
 
 export interface monitorFilterInterface {
-  manufacturer: ReactText[]
+  manufacturer: Array<string | number>
   screenSize: number[]
   refreshRate: number[]
-  resulution: ReactText[]
-  panelType: ReactText[]
+  resulution: Array<string | number>
+  panelType: Array<string | number>
 }
 
 export type monitorDropdownType =
@@ -191,10 +189,10 @@ export interface cpuCoolerDropdownInterface {
 }
 
 export interface cpuCoolerFilterInterface {
-  manufacturer: ReactText[]
+  manufacturer: Array<string | number>
   height: number[]
-  socket: ReactText[]
-  waterCooled: ReactText[]
+  socket: Array<string | number>
+  waterCooled: Array<string | number>
 }
 
 export type cpuCoolerDropdownType = 'manufacturer' | 'height' | 'socket' | 'waterCooled'
@@ -206,8 +204,8 @@ export interface caseDropdownInterface {
 }
 
 export interface caseFilterInterface {
-  manufacturer: ReactText[]
-  formFactor: ReactText[]
+  manufacturer: Array<string | number>
+  formFactor: Array<string | number>
 }
 
 export type caseDropdownType = 'manufacturer' | 'formFactor'

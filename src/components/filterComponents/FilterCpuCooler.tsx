@@ -14,7 +14,6 @@ import {
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { BsDash, BsPlus } from 'react-icons/bs'
-import { ReactText } from 'react-router/node_modules/@types/react'
 import {
   cpuCoolerDropdownInterface,
   cpuCoolerDropdownType,
@@ -43,7 +42,7 @@ const FilterCpuCooler = () => {
     setDropdown({ ...dropdown, [e]: !dropdown[e] })
   }
 
-  function onCheckBoxChange(e: cpuCoolerDropdownType, value: ReactText[]) {
+  function onCheckBoxChange(e: cpuCoolerDropdownType, value: Array<string | number>) {
     if (filters[e][0] === 'all' && value.length > 1) {
       setFilters({ ...filters, [e]: value.filter(current => current !== 'all') })
     } else if (

@@ -14,7 +14,6 @@ import {
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { BsDash, BsPlus } from 'react-icons/bs'
-import { ReactText } from 'react-router/node_modules/@types/react'
 import {
   monitorDropdownInterface,
   monitorDropdownType,
@@ -45,7 +44,7 @@ const FilterMonitor = () => {
     setDropdown({ ...dropdown, [e]: !dropdown[e] })
   }
 
-  function onCheckBoxChange(e: monitorDropdownType, value: ReactText[]) {
+  function onCheckBoxChange(e: monitorDropdownType, value: Array<string | number>) {
     if (filters[e][0] === 'all' && value.length > 1) {
       setFilters({ ...filters, [e]: value.filter(current => current !== 'all') })
     } else if (

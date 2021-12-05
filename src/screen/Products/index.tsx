@@ -1,4 +1,4 @@
-import { Box, Container, Flex, VStack, Divider } from '@chakra-ui/react'
+import { Box, Container, Flex, VStack, Divider, Text } from '@chakra-ui/react'
 import { useParams } from 'react-router-dom'
 import ProductList from '../../components/ProductList'
 import FilterCpu from '../../components/FilterComponents/FilterCpu'
@@ -36,28 +36,32 @@ const Products = () => {
       case 'case':
         return <FilterCase />
       default:
-        return <p>kategori</p>
+        return null
     }
   }
 
   return (
     <Container maxW='container.xl' py='5' minH='calc(100vh - 75px - 60px)'>
-      <Flex justifyContent='space-between'>
-        <Box w='20%'>
-          <Box mb='2' fontWeight='medium'>
-            Filter
+      {categoryFilter() ? (
+        <Flex justifyContent='space-between'>
+          <Box w='20%'>
+            <Box mb='2' fontWeight='medium'>
+              Filter
+            </Box>
+            <VStack alignItems='flex-start'>
+              <Divider borderColor='gray.400' />
+              {categoryFilter()}
+              <Divider borderColor='gray.500' />
+              <FilterPrice />
+            </VStack>
           </Box>
-          <VStack alignItems='flex-start'>
-            <Divider borderColor='gray.400' />
-            {categoryFilter()}
-            <Divider borderColor='gray.500' />
-            <FilterPrice />
-          </VStack>
-        </Box>
-        <Box w='78%' p='2'>
-          <ProductList />
-        </Box>
-      </Flex>
+          <Box w='78%' p='2'>
+            <ProductList />
+          </Box>
+        </Flex>
+      ) : (
+        <Text>The page you requested could not be found</Text>
+      )}
     </Container>
   )
 }

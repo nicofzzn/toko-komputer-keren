@@ -1,6 +1,5 @@
 import { ChakraProvider } from '@chakra-ui/react'
 import theme from './style/theme'
-// import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import '@fontsource/mulish'
 // components
@@ -14,40 +13,21 @@ import Checkout from './screen/Checkout'
 
 export const App = () => (
   <ChakraProvider theme={theme}>
-    {/* <Router>
-      <Switch>
-        <Route exact path='/login'>
-          <Login />
-        </Route>
-        <Route path='/'>
-          <Navbar />
-        </Route>
-      </Switch>
-
-      <Switch>
-        <Route exact path='/'>
-          <Home />
-        </Route>
-        <Route path='/products/:category?'>
-          <Products />
-        </Route>
-        <Route path='/cart'>
-          <Cart />
-        </Route>
-      </Switch>
-
-      <Route exact path='/checkout'>
-        <Checkout />
-      </Route>
-
-      <Route exact path='/'>
-        <Footer />
-      </Route>
-    </Router> */}
-
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Navbar />}></Route>
+        <Route path='/login' element={<Login />} />
+        <Route path='*' element={<Navbar />} />
+      </Routes>
+      <Routes>
+        <Route path='/'>
+          <Route index element={<Home />} />
+          <Route path='products/:category' element={<Products />} />
+          <Route path='cart' element={<Cart />} />
+          <Route path='checkout' element={<Checkout />} />
+        </Route>
+      </Routes>
+      <Routes>
+        <Route path='*' element={<Footer />} />
       </Routes>
     </BrowserRouter>
   </ChakraProvider>
